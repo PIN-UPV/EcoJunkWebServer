@@ -1,0 +1,7 @@
+# PostgreSQL
+# ------------------------------------------------------------------------------
+POSTGRES_HOST=postgres
+POSTGRES_PORT=5432
+POSTGRES_DB=ecojunk
+POSTGRES_USER=xADUfXaudRLTMkfwqUFYWIixxvIYHlGG
+POSTGRES_PASSWORD=AdF4vjbbA81kkFwwOvS4yKaVuyFGGCXQGpnzg8phsC9VbSYFPsbmXRJkNDw4zzxu
