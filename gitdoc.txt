@@ -7,3 +7,18 @@ git pull
 # status - current branch
 git status
 
+# add to commit
+git add gitdoc.txt
+
+# commit
+git commit
+
+# push
+git push origin gitdocumentation
+
+
+# origin -> tu servidor github
+#   reset: git remote rm origin
+#   para cambiarlo: git remote add origin https://github.com/lorenzoviva/EcoJunkWebServer.git
+# tu origin --> pull request
+
