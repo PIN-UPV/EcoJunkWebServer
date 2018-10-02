@@ -1,0 +1,9 @@
+# crear nueva rama
+git checkout -b gitdocumentation
+
+# pull
+git pull
+
+# status - current branch
+git status
+
