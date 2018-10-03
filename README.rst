@@ -93,10 +93,10 @@ Docker
 
 See detailed `cookiecutter-django Docker documentation`_.
 
-Running the containers:
-^^^^^^^^^^^^^^^^^^^^^^^
+Running the containers for development:
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-``sudo docker-compose -f local.yml up``
+``docker-compose -f local.yml up``
 
 .. _`cookiecutter-django Docker documentation`: http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html
 
