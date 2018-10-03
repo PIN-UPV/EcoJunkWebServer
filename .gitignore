@@ -266,3 +266,6 @@ ecojunk/media/
 .env
 .envs/*
 !.envs/.local/
+
+### PyCharm IDE files:
+.idea/
