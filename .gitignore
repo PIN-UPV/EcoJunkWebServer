@@ -257,6 +257,9 @@ Session.vim
 # Auto-generated tag files
 tags
 
+# Pipenv
+Pipfile
+Pipfile.lock
 
 ### Project template
 
