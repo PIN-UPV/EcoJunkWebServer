@@ -8,20 +8,25 @@ class Company(models.Model):
 
     class Meta:
         verbose_name = _("Company")
-        verbose_name = _("Companies")
+        verbose_name_plural = _("Companies")
 
     def __str__(self):
         return self.name
 
 
 class Contract(models.Model):
-    company = models.ForeignKey("companies.Company", verbose_name=_("Company"))
+    company = models.ForeignKey(
+        "companies.Company",
+        verbose_name=_("Company"),
+        related_name="contracts",
+        on_delete=models.CASCADE,
+    )
 
     end_date = models.DateTimeField(_("End date"))
 
     class Meta:
         verbose_name = _("Contract")
-        verbose_name = _("Contracts")
+        verbose_name_plural = _("Contracts")
 
     def __str__(self):
         return self.name
