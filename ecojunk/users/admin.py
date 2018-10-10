@@ -1,17 +1,36 @@
 from django.contrib import admin
-from django.contrib.auth import admin as auth_admin
 from django.contrib.auth import get_user_model
-
-from ecojunk.users.forms import UserChangeForm, UserCreationForm
+from django.contrib.auth.forms import UserChangeForm, UserCreationForm
 
 User = get_user_model()
 
 
-@admin.register(User)
-class UserAdmin(auth_admin.UserAdmin):
+class MyUserChangeForm(UserChangeForm):
+    class Meta(UserChangeForm.Meta):
+        model = User
 
-    form = UserChangeForm
-    add_form = UserCreationForm
-    fieldsets = (("User", {"fields": ("name",)}),) + auth_admin.UserAdmin.fieldsets
-    list_display = ["username", "name", "is_superuser"]
-    search_fields = ["name"]
+
+class MyUserCreationForm(UserCreationForm):
+    error_message = UserCreationForm.error_messages.update(
+        {"duplicate_email": "This email has already been taken."}
+    )
+
+    class Meta(UserCreationForm.Meta):
+        model = User
+        fields = ("email",)
+
+    def clean_email(self):
+        email = self.cleaned_data["email"]
+        try:
+            User.objects.get(email=email)
+        except User.DoesNotExist:
+            return email
+        raise forms.ValidationError(self.error_messages["duplicate_email"])
+
+
+@admin.register(User)
+class UserAdmin(admin.ModelAdmin):
+    form = MyUserChangeForm
+    add_form = MyUserCreationForm
+    list_display = ["email", "name", "is_superuser"]
+    search_fields = ["email"]
