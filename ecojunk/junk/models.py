@@ -4,11 +4,11 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class Deal(models.Model):
-    customer = models.ForeignKey("users.User", verbose_name=_("Customer"))
-    rider = models.ForeignKey("users.User", verbose_name=_("Rider"))
+    customer = models.ForeignKey("users.User", verbose_name=_("Customer"), null=True, on_delete=models.SET_NULL)
+    rider = models.ForeignKey("users.User", verbose_name=_("Rider"), null=True, on_delete=models.SET_NULL)
 
     junk_point = models.ForeignKey(
-        "junk.JunkPoint", verbose_name=_("Junk point"), null=True
+        "junk.JunkPoint", verbose_name=_("Junk point"), null=True, on_delete=models.SET_NULL
     )
 
     date = models.DateTimeField(_("Date"), auto_now_add=True)
@@ -22,12 +22,12 @@ class Deal(models.Model):
 
 
 class Trash(models.Model):
-    deal = models.ForeignKey("junk.Deal", verbose_name=_("Deal"))
+    deal = models.ForeignKey("junk.Deal", verbose_name=_("Deal"), on_delete=models.CASCADE)
 
     name = models.CharField(_("Name"), max_length=255)
     description = models.TextField(_("Description"), max_length=512)
 
-    type = models.ForeignKey("junk.TrashType", verbose_name=_("Trash type"))
+    type = models.ForeignKey("junk.TrashType", verbose_name=_("Trash type"), null=True, on_delete=models.SET_NULL)
 
     class Meta:
         verbose_name = _("Trash")
@@ -50,10 +50,10 @@ class TrashType(models.Model):
 
 class JunkPoint(models.Model):
     location = models.PointField(_("Location"))
-    type = models.ForeignKey("junk.JunkPoint", verbose_name=_("Junk point"))
+    type = models.ForeignKey("junk.JunkPoint", verbose_name=_("Junk point"), null=True, on_delete=models.SET_NULL)
 
     contract = models.ForeignKey(
-        "companies.Contract", verbose_name=_("Contract"), null=True
+        "companies.Contract", verbose_name=_("Contract"), null=True, on_delete=models.SET_NULL
     )
 
     class Meta:
