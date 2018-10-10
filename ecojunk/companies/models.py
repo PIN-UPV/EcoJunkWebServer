@@ -15,7 +15,7 @@ class Company(models.Model):
 
 
 class Contract(models.Model):
-    company = models.ForeignKey("companies.Company", verbose_name=_("Company"))
+    company = models.ForeignKey("companies.Company", verbose_name=_("Company"), on_delete=models.CASCADE)
 
     end_date = models.DateTimeField(_("End date"))
 

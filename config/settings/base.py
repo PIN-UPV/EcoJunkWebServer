@@ -71,6 +71,8 @@ THIRD_PARTY_APPS = [
 LOCAL_APPS = [
     "ecojunk.users.apps.UsersAppConfig",
     "ecojunk.rewards.apps.RewardsConfig",
+    "ecojunk.junk.apps.JunkConfig",
+    "ecojunk.companies.apps.CompaniesConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
