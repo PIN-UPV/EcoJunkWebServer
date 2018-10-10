@@ -58,7 +58,7 @@ class JunkPoint(models.Model):
 
     class Meta:
         verbose_name = _("Junk point")
-        verbose_name = _("Junk points")
+        verbose_name_plural = _("Junk points")
 
     def __str__(self):
         return self.location

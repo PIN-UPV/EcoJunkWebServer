@@ -8,7 +8,7 @@ class Company(models.Model):
 
     class Meta:
         verbose_name = _("Company")
-        verbose_name = _("Companies")
+        verbose_name_plural = _("Companies")
 
     def __str__(self):
         return self.name
@@ -21,7 +21,7 @@ class Contract(models.Model):
 
     class Meta:
         verbose_name = _("Contract")
-        verbose_name = _("Contracts")
+        verbose_name_plural = _("Contracts")
 
     def __str__(self):
         return self.name

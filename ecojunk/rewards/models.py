@@ -13,7 +13,7 @@ class Mission(models.Model):
 
     class Meta:
         verbose_name = _("Mission")
-        verbose_name = _("Missions")
+        verbose_name_plural = _("Missions")
 
     def __str__(self):
         return self.name
@@ -25,7 +25,7 @@ class Badge(models.Model):
 
     class Meta:
         verbose_name = _("Badge")
-        verbose_name = _("Badges")
+        verbose_name_plural = _("Badges")
 
     def __str__(self):
         return self.name
