@@ -13,7 +13,30 @@ RUN apk update \
   # Translations dependencies
   && apk add gettext \
   # https://docs.djangoproject.com/en/dev/ref/django-admin/#dbshell
-  && apk add postgresql-client
+  && apk add postgresql-client \
+  # GeoDjango Support
+  && apk add --update alpine-sdk
+
+ENV CFLAGS="$CFLAGS -L/lib"
+RUN apk update && \
+    apk upgrade && \
+    apk add --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/main \
+     --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing \
+     --update-cache --repository http://dl-cdn.alpinelinux.org/alpine/edge/community \
+     bash \
+     binutils \
+     gdal \
+     gdal-dev \
+     py-gdal \
+     geos \
+     git \
+     libpq \
+     linux-headers \
+     mailcap \
+     proj4-dev \
+     postgresql && \
+    rm -rf /var/cache/apk/*
+RUN ln -s /usr/lib/libgeos_c.so.1 /usr/local/lib/libgeos_c.so
 
 # Requirements are installed here to ensure they will be cached.
 COPY ./requirements /requirements
