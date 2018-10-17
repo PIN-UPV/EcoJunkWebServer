@@ -1,6 +1,7 @@
 """
 Base settings to build other settings files upon.
 """
+import datetime
 
 import environ
 
@@ -67,14 +68,12 @@ THIRD_PARTY_APPS = [
     "allauth",
     "allauth.account",
     "allauth.socialaccount",
-    "rest_framework",
 ]
 LOCAL_APPS = [
     "ecojunk.users.apps.UsersAppConfig",
     "ecojunk.rewards.apps.RewardsConfig",
     "ecojunk.junk.apps.JunkConfig",
     "ecojunk.companies.apps.CompaniesConfig",
-    # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -209,6 +208,27 @@ ADMINS = [("""TeamX""", "teamx@example.com")]
 # https://docs.djangoproject.com/en/dev/ref/settings/#managers
 MANAGERS = ADMINS
 
+# DJANGO REST FRAMEWORK
+# ------------------------------------------------------------------------------
+# See: http://www.django-rest-framework.org/
+INSTALLED_APPS += ("rest_framework", "rest_framework.authtoken", "rest_framework_gis")
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_jwt.authentication.JSONWebTokenAuthentication",
+        "rest_framework.authentication.BasicAuthentication",
+        "rest_framework.authentication.SessionAuthentication",
+        "rest_framework.authentication.TokenAuthentication",
+    ),
+    "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
+    "PAGE_SIZE": 8,
+    "EXCEPTION_HANDLER": "ecojunk.core.api.exceptions.extra_exception_handler",
+}
+JWT_AUTH = {
+    "JWT_EXPIRATION_DELTA": datetime.timedelta(hours=1),
+    "JWT_ALLOW_REFRESH": True,
+    "JWT_REFRESH_EXPIRATION_DELTA": datetime.timedelta(hours=30),
+}
 
 # django-allauth
 # ------------------------------------------------------------------------------
@@ -216,6 +236,7 @@ ACCOUNT_ALLOW_REGISTRATION = env.bool("DJANGO_ACCOUNT_ALLOW_REGISTRATION", True)
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_AUTHENTICATION_METHOD = "email"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
+ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"

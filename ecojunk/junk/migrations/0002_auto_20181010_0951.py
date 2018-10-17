@@ -10,24 +10,42 @@ class Migration(migrations.Migration):
     initial = True
 
     dependencies = [
-        ('junk', '0001_initial'),
+        ("junk", "0001_initial"),
         migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='deal',
-            name='customer',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='deals', to=settings.AUTH_USER_MODEL, verbose_name='Customer'),
+            model_name="deal",
+            name="customer",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="deals",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Customer",
+            ),
         ),
         migrations.AddField(
-            model_name='deal',
-            name='junk_point',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='deals', to='junk.JunkPoint', verbose_name='Junk point'),
+            model_name="deal",
+            name="junk_point",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="deals",
+                to="junk.JunkPoint",
+                verbose_name="Junk point",
+            ),
         ),
         migrations.AddField(
-            model_name='deal',
-            name='rider',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='deliveries', to=settings.AUTH_USER_MODEL, verbose_name='Rider'),
+            model_name="deal",
+            name="rider",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="deliveries",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Rider",
+            ),
         ),
     ]

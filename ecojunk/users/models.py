@@ -71,12 +71,15 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     date_joined = models.DateTimeField(_("Date joined"), default=timezone.now)
 
+    objects = UserManager()
+
     EMAIL_FIELD = "email"
     USERNAME_FIELD = "email"
 
     class Meta:
         verbose_name = _("User")
         verbose_name_plural = _("Users")
+        ordering = ("date_joined",)
 
     def __str__(self):
         return self.name
@@ -88,6 +91,7 @@ class Permission(models.Model):
     class Meta:
         verbose_name = _("Permission")
         verbose_name_plural = _("Permissions")
+        ordering = ("id",)
 
     def __str__(self):
         return self.rol

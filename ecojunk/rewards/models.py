@@ -14,6 +14,7 @@ class Mission(models.Model):
     class Meta:
         verbose_name = _("Mission")
         verbose_name_plural = _("Missions")
+        ordering = ("id",)
 
     def __str__(self):
         return self.name
@@ -26,6 +27,7 @@ class Badge(models.Model):
     class Meta:
         verbose_name = _("Badge")
         verbose_name_plural = _("Badges")
+        ordering = ("id",)
 
     def __str__(self):
         return self.name

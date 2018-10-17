@@ -2,4 +2,5 @@ from django.apps import AppConfig
 
 
 class JunkConfig(AppConfig):
-    name = 'junk'
+    name = "ecojunk.junk"
+    verbose_name = "Junk"

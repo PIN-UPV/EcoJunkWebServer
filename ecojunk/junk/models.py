@@ -32,6 +32,7 @@ class Deal(models.Model):
     class Meta:
         verbose_name = _("Deal")
         verbose_name = _("Deals")
+        ordering = ("id",)
 
     def __str__(self):
         return self.date
@@ -59,6 +60,7 @@ class Trash(models.Model):
     class Meta:
         verbose_name = _("Trash")
         verbose_name_plural = _("Trash")
+        ordering = ("id",)
 
     def __str__(self):
         return self.name
@@ -70,6 +72,7 @@ class TrashType(models.Model):
     class Meta:
         verbose_name = _("Trash type")
         verbose_name_plural = _("Trash type")
+        ordering = ("id",)
 
     def __str__(self):
         return self.name
@@ -78,7 +81,7 @@ class TrashType(models.Model):
 class JunkPoint(models.Model):
     location = models.PointField(_("Location"))
     type = models.ForeignKey(
-        "junk.JunkPoint",
+        "junk.JunkPointType",
         verbose_name=_("Junk point"),
         related_name="points",
         null=True,
@@ -96,6 +99,7 @@ class JunkPoint(models.Model):
     class Meta:
         verbose_name = _("Junk point")
         verbose_name_plural = _("Junk points")
+        ordering = ("id",)
 
     def __str__(self):
         return self.location
@@ -108,6 +112,7 @@ class JunkPointType(models.Model):
     class Meta:
         verbose_name = _("Junk point type")
         verbose_name_plural = _("Junk point types")
+        ordering = ("id",)
 
     def __str__(self):
         return self.name

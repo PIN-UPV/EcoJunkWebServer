@@ -9,6 +9,7 @@ class Company(models.Model):
     class Meta:
         verbose_name = _("Company")
         verbose_name_plural = _("Companies")
+        ordering = ("id",)
 
     def __str__(self):
         return self.name
@@ -27,6 +28,7 @@ class Contract(models.Model):
     class Meta:
         verbose_name = _("Contract")
         verbose_name_plural = _("Contracts")
+        ordering = ("id",)
 
     def __str__(self):
         return self.name
