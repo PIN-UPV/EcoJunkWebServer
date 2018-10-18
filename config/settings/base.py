@@ -74,6 +74,7 @@ LOCAL_APPS = [
     "ecojunk.rewards.apps.RewardsConfig",
     "ecojunk.junk.apps.JunkConfig",
     "ecojunk.companies.apps.CompaniesConfig",
+    "ecojunk.core.apps.CoreConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS

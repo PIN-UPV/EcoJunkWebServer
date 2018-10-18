@@ -65,8 +65,6 @@ Moved to `Live reloading and SASS compilation`_.
 .. _`Live reloading and SASS compilation`: http://cookiecutter-django.readthedocs.io/en/latest/live-reloading-and-sass-compilation.html
 
 
-
-
 Email Server
 ^^^^^^^^^^^^
 
@@ -93,10 +91,27 @@ Docker
 
 See detailed `cookiecutter-django Docker documentation`_.
 
-Running the containers for development:
+
+Running the project for development:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+You will need docker and docker-compose installed.
+
+First of all we have to run the containers:
+
 ``docker-compose -f local.yml up``
+
+Then, we can create an superuser with this command:
+
+``docker-compose -f local.yml run --rm django python manage.py createsuperuser``
+
+If you want to access the admin panel to check and modify data access to:
+
+``localhost:8000/admin/``
+
+To populate the database run this command:
+
+``docker-compose -f local.yml run --rm django python manage.py populate_fake_data``
 
 .. _`cookiecutter-django Docker documentation`: http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html
 
