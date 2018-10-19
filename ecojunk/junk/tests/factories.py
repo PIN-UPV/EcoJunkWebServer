@@ -1,6 +1,5 @@
 import factory
-from django.utils.text import slugify
-from factory.fuzzy import FuzzyInteger, FuzzyText
+from factory.fuzzy import FuzzyText
 
 from ecojunk.core.tests.fuzzy import FuzzyPoint
 
@@ -15,7 +14,16 @@ class JunkPointTypeFactory(factory.django.DjangoModelFactory):
 
 class JunkPointFactory(factory.django.DjangoModelFactory):
     location = FuzzyPoint()
-    type = factory.SubFactory(JunkPointTypeFactory)
+    type = factory.SubFactory("junk.tests.factories.JunkPointTypeFactory")
 
     class Meta:
         model = "junk.JunkPoint"
+
+
+class DealFactory(factory.django.DjangoModelFactory):
+    customer = factory.SubFactory("users.tests.factories.UserFactory")
+    rider = factory.SubFactory("users.tests.factories.UserFactory")
+    junk_point = factory.SubFactory("junk.tests.factories.JunkPointFactory")
+
+    class Meta:
+        model = "junk.Deal"

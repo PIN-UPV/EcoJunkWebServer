@@ -1,5 +1,4 @@
 from django.contrib.gis.db import models
-from django.core.validators import MaxValueValidator, MinValueValidator
 from django.utils.translation import ugettext_lazy as _
 
 
