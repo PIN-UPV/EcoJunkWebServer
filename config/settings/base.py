@@ -245,7 +245,3 @@ ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 ACCOUNT_ADAPTER = "ecojunk.users.adapters.AccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 SOCIALACCOUNT_ADAPTER = "ecojunk.users.adapters.SocialAccountAdapter"
-
-
-# Your stuff...
-# ------------------------------------------------------------------------------

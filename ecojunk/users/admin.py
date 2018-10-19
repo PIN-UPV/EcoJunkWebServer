@@ -32,5 +32,5 @@ class MyUserCreationForm(UserCreationForm):
 class UserAdmin(admin.ModelAdmin):
     form = MyUserChangeForm
     add_form = MyUserCreationForm
-    list_display = ["email", "name", "is_superuser"]
-    search_fields = ["email"]
+    list_display = ("email", "name", "is_superuser")
+    search_fields = ("email",)

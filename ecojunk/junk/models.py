@@ -34,7 +34,7 @@ class Deal(models.Model):
         ordering = ("id",)
 
     def __str__(self):
-        return self.date
+        return str(self.date)
 
 
 class Trash(models.Model):
@@ -101,7 +101,7 @@ class JunkPoint(models.Model):
         ordering = ("id",)
 
     def __str__(self):
-        return self.location
+        return str(self.location)
 
 
 class JunkPointType(models.Model):
