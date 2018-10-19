@@ -13,6 +13,7 @@ app_name = "api_v1"
 
 # ViewSet resources included using router
 router = SimpleRouter()
+
 router.register("junk_points", viewset=JunkPointResource, base_name="junk_points")
 router.register(
     "junk_point_types", viewset=JunkPointTypeResource, base_name="request_restore_code"
@@ -22,4 +23,5 @@ router.register("missions", viewset=MissionResource)
 router.register("badges", viewset=BadgeResource)
 router.register("contracts", viewset=ContractResource)
 router.register("companies", viewset=CompanyResource)
+
 urlpatterns = [path("", include(router.urls))]
