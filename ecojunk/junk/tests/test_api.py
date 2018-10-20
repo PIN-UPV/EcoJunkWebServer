@@ -1,7 +1,7 @@
 from rest_framework import status
 from test_plus import TestCase
 
-from ecojunk.junk.models import JunkPoint
+from ecojunk.junk.models import Deal, JunkPoint
 from ecojunk.junk.tests.factories import (DealFactory, JunkPointFactory,
                                           JunkPointTypeFactory)
 from ecojunk.users.tests.factories import UserFactory
@@ -59,5 +59,8 @@ class DealTest(TestCase):
         self.assertEqual(len(deals), data["count"])
 
     def test_create_deal(self):
-        # TODO
-        self.assertTrue(True)
+        junk_point = JunkPointFactory()
+        data = {"junk_point": junk_point.pk}
+        response = self.client.post("/api/v1/deals/", data=data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+        self.assertEqual(Deal.objects.count(), 1)

@@ -25,7 +25,3 @@ class DealSerializer(serializers.ModelSerializer):
         model = Deal
         fields = ("customer", "rider", "junk_point")
         extra_kwargs = {"date": {"read_only": True}}
-
-    def create(self, validated_data):
-        """Override to handle nested groups."""
-        pass

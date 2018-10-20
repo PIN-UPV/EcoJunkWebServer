@@ -30,9 +30,6 @@ class DealResource(ModelViewSet):
     serializer_class = DealSerializer
     permission_classes = [NoDeletes, NoUpdates]
 
-    def perform_create(self, serializer):
-        return serializer.save(user=self.request.user)
-
     @action(detail=True, methods=["post"])
     def accept_deal(self, request, **kwargs):
         # TODO check user is rider and give the deal
