@@ -5,7 +5,7 @@ from ecojunk.rewards.api.v1.serializers import BadgeSerializer, MissionSerialize
 from ecojunk.rewards.models import Badge, Mission
 
 
-class MissionResource(ReadOnlyModelViewSet):
+class MissionResource(ModelViewSet):
     queryset = Mission.objects.all()
     serializer_class = MissionSerializer
     permission_classes = [NoDeletes, NoUpdates]
