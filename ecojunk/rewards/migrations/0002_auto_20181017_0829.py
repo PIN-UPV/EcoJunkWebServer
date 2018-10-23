@@ -5,17 +5,23 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('rewards', '0001_initial'),
-    ]
+    dependencies = [("rewards", "0001_initial")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='badge',
-            options={'ordering': ('id',), 'verbose_name': 'Badge', 'verbose_name_plural': 'Badges'},
+            name="badge",
+            options={
+                "ordering": ("id",),
+                "verbose_name": "Badge",
+                "verbose_name_plural": "Badges",
+            },
         ),
         migrations.AlterModelOptions(
-            name='mission',
-            options={'ordering': ('id',), 'verbose_name': 'Mission', 'verbose_name_plural': 'Missions'},
+            name="mission",
+            options={
+                "ordering": ("id",),
+                "verbose_name": "Mission",
+                "verbose_name_plural": "Missions",
+            },
         ),
     ]

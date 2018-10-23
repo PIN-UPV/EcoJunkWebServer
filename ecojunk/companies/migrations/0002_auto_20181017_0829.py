@@ -5,17 +5,23 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('companies', '0001_initial'),
-    ]
+    dependencies = [("companies", "0001_initial")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='company',
-            options={'ordering': ('id',), 'verbose_name': 'Company', 'verbose_name_plural': 'Companies'},
+            name="company",
+            options={
+                "ordering": ("id",),
+                "verbose_name": "Company",
+                "verbose_name_plural": "Companies",
+            },
         ),
         migrations.AlterModelOptions(
-            name='contract',
-            options={'ordering': ('id',), 'verbose_name': 'Contract', 'verbose_name_plural': 'Contracts'},
+            name="contract",
+            options={
+                "ordering": ("id",),
+                "verbose_name": "Contract",
+                "verbose_name_plural": "Contracts",
+            },
         ),
     ]

@@ -5,21 +5,25 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('junk', '0006_auto_20181017_0833'),
-    ]
+    dependencies = [("junk", "0006_auto_20181017_0833")]
 
     operations = [
         migrations.AddField(
-            model_name='junkpoint',
-            name='description',
-            field=models.TextField(default='Default street name', max_length=512, verbose_name='Description'),
+            model_name="junkpoint",
+            name="description",
+            field=models.TextField(
+                default="Default street name",
+                max_length=512,
+                verbose_name="Description",
+            ),
             preserve_default=False,
         ),
         migrations.AddField(
-            model_name='junkpoint',
-            name='street_name',
-            field=models.CharField(default='Default description', max_length=255, verbose_name='Name'),
+            model_name="junkpoint",
+            name="street_name",
+            field=models.CharField(
+                default="Default description", max_length=255, verbose_name="Name"
+            ),
             preserve_default=False,
         ),
     ]
