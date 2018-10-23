@@ -6,8 +6,8 @@ from django.utils.translation import ugettext_lazy as _
 class Mission(models.Model):
     name = models.CharField(_("Name"), max_length=255)
     description = models.TextField(_("Description"), max_length=512)
-    dificulty = models.IntegerField(
-        _("dificulty"), validators=[MinValueValidator(0), MaxValueValidator(10)]
+    difficulty = models.IntegerField(
+        _("difficulty"), validators=[MinValueValidator(0), MaxValueValidator(10)]
     )
     badges = models.ManyToManyField("rewards.Badge", verbose_name=_("Badges"))
 
