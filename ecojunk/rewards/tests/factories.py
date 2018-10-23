@@ -1,8 +1,5 @@
 import factory
-from django.utils.text import slugify
 from factory.fuzzy import FuzzyInteger, FuzzyText
-
-from ecojunk.core.tests.fuzzy import FuzzyPoint
 
 
 class BadgeFactory(factory.django.DjangoModelFactory):
