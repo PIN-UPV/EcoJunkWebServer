@@ -6,15 +6,10 @@ import ecojunk.users.models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('users', '0001_initial'),
-    ]
+    dependencies = [("users", "0001_initial")]
 
     operations = [
         migrations.AlterModelManagers(
-            name='user',
-            managers=[
-                ('objects', ecojunk.users.models.UserManager()),
-            ],
-        ),
+            name="user", managers=[("objects", ecojunk.users.models.UserManager())]
+        )
     ]

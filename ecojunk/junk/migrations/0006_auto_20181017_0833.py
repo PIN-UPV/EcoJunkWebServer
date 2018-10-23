@@ -5,17 +5,23 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('junk', '0005_auto_20181017_0832'),
-    ]
+    dependencies = [("junk", "0005_auto_20181017_0832")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='junkpoint',
-            options={'ordering': ('id',), 'verbose_name': 'Junk point', 'verbose_name_plural': 'Junk points'},
+            name="junkpoint",
+            options={
+                "ordering": ("id",),
+                "verbose_name": "Junk point",
+                "verbose_name_plural": "Junk points",
+            },
         ),
         migrations.AlterModelOptions(
-            name='junkpointtype',
-            options={'ordering': ('id',), 'verbose_name': 'Junk point type', 'verbose_name_plural': 'Junk point types'},
+            name="junkpointtype",
+            options={
+                "ordering": ("id",),
+                "verbose_name": "Junk point type",
+                "verbose_name_plural": "Junk point types",
+            },
         ),
     ]

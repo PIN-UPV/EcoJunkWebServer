@@ -7,7 +7,7 @@ class Mission(models.Model):
     name = models.CharField(_("Name"), max_length=255)
     description = models.TextField(_("Description"), max_length=512)
     difficulty = models.IntegerField(
-        _("difficulty"), validators=[MinValueValidator(0), MaxValueValidator(10)]
+        _("Difficulty"), validators=[MinValueValidator(0), MaxValueValidator(10)]
     )
     badges = models.ManyToManyField("rewards.Badge", verbose_name=_("Badges"))
 

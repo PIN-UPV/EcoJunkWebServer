@@ -5,13 +5,15 @@ from django.db import migrations
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('junk', '0004_auto_20181017_0831'),
-    ]
+    dependencies = [("junk", "0004_auto_20181017_0831")]
 
     operations = [
         migrations.AlterModelOptions(
-            name='trashtype',
-            options={'ordering': ('id',), 'verbose_name': 'Trash type', 'verbose_name_plural': 'Trash type'},
-        ),
+            name="trashtype",
+            options={
+                "ordering": ("id",),
+                "verbose_name": "Trash type",
+                "verbose_name_plural": "Trash type",
+            },
+        )
     ]
