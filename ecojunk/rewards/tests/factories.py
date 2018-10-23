@@ -1,6 +1,7 @@
 import factory
 from django.utils.text import slugify
 from factory.fuzzy import FuzzyInteger, FuzzyText
+
 from ecojunk.core.tests.fuzzy import FuzzyPoint
 
 
@@ -28,6 +29,5 @@ class MissionFactory(factory.django.DjangoModelFactory):
             for badge in extracted:
                 self.badges.add(badge)
 
-        class Meta:
-            model = "rewards.Mission"
-
+    class Meta:
+        model = "rewards.Mission"
