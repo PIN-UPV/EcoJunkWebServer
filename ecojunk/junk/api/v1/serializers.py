@@ -17,7 +17,7 @@ class JunkPointSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = JunkPoint
-        fields = ("location", "type")
+        fields = ("street_name", "description", "location", "type")
 
 
 class DealSerializer(serializers.ModelSerializer):

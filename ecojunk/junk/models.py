@@ -78,7 +78,11 @@ class TrashType(models.Model):
 
 
 class JunkPoint(models.Model):
+    street_name = models.CharField(_("Name"), max_length=255)
+    description = models.TextField(_("Description"), max_length=512)
+
     location = models.PointField(_("Location"))
+
     type = models.ForeignKey(
         "junk.JunkPointType",
         verbose_name=_("Junk point"),

@@ -2,8 +2,11 @@ from rest_framework import status
 from test_plus import TestCase
 
 from ecojunk.junk.models import Deal, JunkPoint
-from ecojunk.junk.tests.factories import (DealFactory, JunkPointFactory,
-                                          JunkPointTypeFactory)
+from ecojunk.junk.tests.factories import (
+    DealFactory,
+    JunkPointFactory,
+    JunkPointTypeFactory,
+)
 from ecojunk.users.tests.factories import UserFactory
 
 
@@ -37,6 +40,8 @@ class JunkPointResourceTest(TestCase):
     def test_create_junk_point(self):
         point_type = JunkPointTypeFactory()
         data = {
+            "street_name": "Junk point street name",
+            "description": "Junk point description",
             "location": "POINT (12.492324113849 41.890307434153)",
             "type": point_type.pk,
         }
