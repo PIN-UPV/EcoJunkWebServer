@@ -19,6 +19,11 @@ class JunkPointSerializer(serializers.ModelSerializer):
         model = JunkPoint
         fields = ("street_name", "description", "location", "type")
 
+    def to_representation(self, instance):
+        response = super().to_representation(instance)
+        response["type"] = JunkPointTypeSerializer(instance.type).data
+        return response
+
 
 class DealSerializer(serializers.ModelSerializer):
     class Meta:
