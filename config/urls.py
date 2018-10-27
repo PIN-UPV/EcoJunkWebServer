@@ -22,9 +22,9 @@ urlpatterns += [
     path("api/token-auth/", obtain_jwt_token),
     path("api/token-refresh/", refresh_jwt_token),
     path("api/token-verify/", verify_jwt_token),
-    path("users/register", RegistrationAPIView.as_view()),
-    path("users/login", LoginAPIView.as_view()),
-    path("users", UserRetrieveUpdateAPIView.as_view()),
+    path("api/v1/users/register", RegistrationAPIView.as_view()),
+    path("api/v1/users/login", LoginAPIView.as_view()),
+    path("api/v1/users", UserRetrieveUpdateAPIView.as_view()),
     # V1 endpoints
     path("api/v1/", include("config.router", namespace="api_v1")),
 ]
