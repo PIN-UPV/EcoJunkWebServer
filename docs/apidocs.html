@@ -1,0 +1,127 @@
+<html><head><title>API</title></head><body>
+    <div><h2>Allowed HTTPs requests:</h2><pre>PUT     : To create resource 
+POST    : Update resource
+GET     : Get a resource or list of resources
+DELETE  : To delete resource
+</pre></div>
+<div><h2>Description Of Usual Server Responses:</h2><ul>
+<li>
+<p>200 <code>OK</code> - the request was successful (some API calls may return 201 instead).</p>
+</li>
+<li>
+<p>201 <code>Created</code> - the request was successful and a resource was created.</p>
+</li>
+<li>
+<p>204 <code>No Content</code> - the request was successful but there is no representation to return (i.e. the response is empty).</p>
+</li>
+<li>
+<p>400 <code>Bad Request</code> - the request could not be understood or was missing required parameters.</p>
+</li>
+<li>
+<p>401 <code>Unauthorized</code> - authentication failed or user doesn't have permissions for requested operation.</p>
+</li>
+<li>
+<p>403 <code>Forbidden</code> - access denied.</p>
+</li>
+<li>
+<p>404 <code>Not Found</code> - resource was not found.</p>
+</li>
+<li>
+<p>405 <code>Method Not Allowed</code> - requested method is not supported for resource.</p>
+</li>
+</ul></div>
+    <div><h2>References:</h2>
+<div><div>api/v1/deals/</div>
+  <div><b>GET:</b> Returns the list of deals<div><b>Example:</b><pre>{
+    "count": 0,
+    "next": null,
+    "previous": null,
+    "results": []
+}</pre></div></div>
+  <div><b>POST:</b> If you are a rider, accept the deal (authentication required)
+  <div><b>Parameters:</b><ul><li><i> id:</i> Numeric id of the Deal to perform action with. Example: 1</li></ul></div></div>
+<div><b>PUT:</b> If you are a customer, add a deal (authentication required)
+  <div><b>Parameters:</b><ul>
+    <li><i> junk_point:</i>  The numeric id of the JunkPoint for the deal. Example: 1</li></ul></div></div>
+<div><b>DELETE:</b> If you are a customer with a pending deal, delete the deal (authentication required)
+  <div><b>Parameters:</b><ul>
+    <li><i> id:</i>  The numeric id of the Deal to delete. Example: 1</li></ul></div></div>
+</div>
+</div><div><div>api/v1/junk_points/</div>
+  <div><b>GET:</b>Return the list of all junk points<div><b>Example:</b><pre>{
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "location": {
+                "type": "Point",
+                "coordinates": [
+                    0.02197265625,
+                    -0.000411987566627
+                ]
+            },
+            "type": 1
+        }
+    ]
+}</pre></div></div>
+</div>
+<div><div>api/v1/missions/</div>
+  <div><b>GET:</b>Return the list of all missions<div><b>Example:</b><pre>{
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "name": "Win the trash tournament",
+            "description": "Make a lot of deals and win the customer of the year badge",
+            "dificulty": 9,
+            "badges": [
+                1
+            ]
+        }
+    ]
+}</pre></div></div>
+</div>
+<div><div>api/v1/badges/</div>
+  <div><b>GET:</b>Return the list of all badges<div><b>Example:</b><pre>{
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "name": "Customer of the year",
+            "description": "you are the best"
+        }
+    ]
+}</pre></div></div>
+  
+</div>
+<div><div>api/v1/contracts/</div>
+  <div><b>GET:</b>Return the list of all contracts<div><b>Example:</b><pre>{
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "company": 1,
+            "end_date": "2019-01-25T12:34:55Z"
+        }
+    ]
+}</pre></div></div>
+</div>
+<div><div>api/v1/companies/</div>
+  <div><b>GET:</b>Return the list of all companies<div><b>Example:</b><pre>{
+    "count": 1,
+    "next": null,
+    "previous": null,
+    "results": [
+        {
+            "name": "Trash Company S.R.L.",
+            "promoted": true
+        }
+    ]
+}</pre></div></div>
+</div>
+</div>
+</body></html>
