@@ -226,8 +226,7 @@ REST_FRAMEWORK = {
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
     "PAGE_SIZE": 8,
     "EXCEPTION_HANDLER": "ecojunk.core.api.exceptions.extra_exception_handler",
-    'NON_FIELD_ERRORS_KEY': 'error',
-
+    "NON_FIELD_ERRORS_KEY": "error",
 }
 JWT_AUTH = {
     "JWT_EXPIRATION_DELTA": datetime.timedelta(hours=1),
@@ -244,7 +243,7 @@ ACCOUNT_AUTHENTICATION_METHOD = "email"
 ACCOUNT_USERNAME_REQUIRED = False
 ACCOUNT_EMAIL_REQUIRED = True
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_EMAIL_VERIFICATION = "mandatory"
+ACCOUNT_EMAIL_VERIFICATION = "none"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_ADAPTER = "ecojunk.users.adapters.AccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
