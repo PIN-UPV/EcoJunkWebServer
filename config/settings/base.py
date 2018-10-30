@@ -220,7 +220,7 @@ REST_FRAMEWORK = {
     ),
     "DEFAULT_PERMISSION_CLASSES": ("rest_framework.permissions.IsAuthenticated",),
     "DEFAULT_PAGINATION_CLASS": "rest_framework.pagination.PageNumberPagination",
-    "PAGE_SIZE": 8,
+    "PAGE_SIZE": 20,
     "EXCEPTION_HANDLER": "ecojunk.core.api.exceptions.extra_exception_handler",
     "NON_FIELD_ERRORS_KEY": "error",
 }
