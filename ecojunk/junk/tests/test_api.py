@@ -1,6 +1,5 @@
 from rest_framework import status
 from rest_framework.test import APITestCase
-from test_plus import TestCase
 
 from ecojunk.junk.models import Deal, JunkPoint
 from ecojunk.junk.tests.factories import (DealFactory, JunkPointFactory,

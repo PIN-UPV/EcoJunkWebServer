@@ -1,12 +1,14 @@
+from datetime import datetime, timedelta
+
+import jwt
+from django.conf import settings
 from django.contrib.auth.base_user import AbstractBaseUser, BaseUserManager
 from django.contrib.auth.models import PermissionsMixin
 from django.contrib.gis.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
+
 from ecojunk.users.constants import ROL_TYPES
-import jwt
-from datetime import datetime, timedelta
-from django.conf import settings
 
 
 class UserManager(BaseUserManager):
@@ -80,13 +82,6 @@ class User(AbstractBaseUser, PermissionsMixin):
 
     @property
     def token(self):
-        """
-        Allows us to get a user's token by calling `user.token` instead of
-        `user.generate_jwt_token().
-
-        The `@property` decorator above makes this possible. `token` is called
-        a "dynamic property".
-        """
         return self._generate_jwt_token()
 
     def _generate_jwt_token(self):
