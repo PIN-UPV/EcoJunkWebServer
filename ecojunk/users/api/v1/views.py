@@ -4,7 +4,11 @@ from rest_framework.views import APIView
 from rest_framework.generics import RetrieveUpdateAPIView
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from ecojunk.users.api.v1.renderers import UserJSONRenderer
-from ecojunk.users.api.v1.serializers import RegistrationSerializer, LoginSerializer, UserSerializer
+from ecojunk.users.api.v1.serializers import (
+    RegistrationSerializer,
+    LoginSerializer,
+    UserSerializer,
+)
 
 
 class RegistrationAPIView(APIView):
@@ -14,7 +18,7 @@ class RegistrationAPIView(APIView):
     serializer_class = RegistrationSerializer
 
     def post(self, request):
-        user = request.data.get('user', {})
+        user = request.data.get("user", {})
         # for key in request.data.keys():
         #     print("KEY: " + key + " --- VALUE: " + str(request.data.get(key)))
         # print("USER:" + str(user))
@@ -35,7 +39,7 @@ class LoginAPIView(APIView):
     serializer_class = LoginSerializer
 
     def post(self, request):
-        user = request.data.get('user', {})
+        user = request.data.get("user", {})
 
         # Notice here that we do not call `serializer.save()` like we did for
         # the registration endpoint. This is because we don't  have
@@ -61,7 +65,7 @@ class UserRetrieveUpdateAPIView(RetrieveUpdateAPIView):
         return Response(serializer.data, status=status.HTTP_200_OK)
 
     def update(self, request, *args, **kwargs):
-        serializer_data = request.data.get('user', {})
+        serializer_data = request.data.get("user", {})
 
         # Here is that serialize, validate, save pattern we talked about
         # before.
