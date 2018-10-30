@@ -15,13 +15,16 @@ def _handle_generic_error(exc, context, response):
     return response
 
 
+def _handle_generic_error(exc, context, response):
+    response.data = {"errors": response.data}
+    return response
+
+
 def extra_exception_handler(exc, context):
     # Call REST framework's default exception handler first,
     # to get the standard error response.
     response = exception_handler(exc, context)
-    handlers = {
-        'ValidationError': _handle_generic_error
-    }
+    handlers = {"ValidationError": _handle_generic_error}
     # This is how we identify the type of the current exception. We will use
     # this in a moment to see whether we should handle this exception or let
     # Django REST Framework do its thing.
