@@ -46,10 +46,68 @@ DELETE  : To delete resource
         </ul>
     </div>
     <div>
+        <div>
+            <h2>Authentication:</h2>
+            <p>All calls need to be authenticated. For obtainging a JWT key use the following enpoint:</p>
+            <div>
+                <div>api/v1/users/login/</div>
+                <div><b>POST:</b>
+                    <div><b>Parameters:</b>
+                        <ul>
+                            <li><i> email:</i> Email of the user you want to log int. Example: example@foo.com</li>
+                            <li><i> password:</i> Password of the user you want to log int. Example: password</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <p>To verify the token:</p>
+            <div>
+                <div>api/v1/users/verify-token/</div>
+                <div><b>GET:</b>
+                    <div><b>Response:</b>
+                        <pre>{
+    "token": "abcdef..."
+}</pre>
+                    </div>
+                </div>
+            </div>
+            <p>To refresh the token:</p>
+            <div>
+                <div>api/v1/users/refresh-token/</div>
+                <div><b>POST:</b>
+                    <div><b>Parameters:</b>
+                        <ul>
+                            <li><i> token:</i> Existing token. Example: abcde...</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <p>To register:</p>
+            <div>
+                <div>api/v1/users/register/</div>
+                <div><b>POST:</b>
+                    <div><b>Parameters:</b>
+                        <ul>
+                            <li><i> email:</i> Email of the user you want to register. Example: example@foo.com</li>
+                            <li><i> password:</i> Password of the user you want to register. Example: password</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br>
+        <div>
+            <p>To authenticate with the token set the headers like this:</p>
+            <div>
+                "Authorization: JWT your_token"
+            </div>
+        </div>
+    </div>
+    <div>
         <h2>References:</h2>
         <div>
             <div>api/v1/deals/</div>
-            <div><b>GET:</b> Returns the list of deals<div><b>Example:</b>
+            <div><b>GET:</b> Returns the list of deals<div><b>Response:</b>
                     <pre>{
     "count": 0,
     "next": null,
@@ -83,7 +141,7 @@ DELETE  : To delete resource
     </div>
     <div>
         <div>api/v1/junk_points/</div>
-        <div><b>GET:</b>Return the list of all junk points<div><b>Example:</b>
+        <div><b>GET:</b>Return the list of all junk points<div><b>Response:</b>
                 <pre>{
     "count": 1,
     "next": null,
@@ -106,7 +164,7 @@ DELETE  : To delete resource
     </div>
     <div>
         <div>api/v1/missions/</div>
-        <div><b>GET:</b>Return the list of all missions<div><b>Example:</b>
+        <div><b>GET:</b>Return the list of all missions<div><b>Response:</b>
                 <pre>{
     "count": 1,
     "next": null,
@@ -127,7 +185,7 @@ DELETE  : To delete resource
     </div>
     <div>
         <div>api/v1/badges/</div>
-        <div><b>GET:</b>Return the list of all badges<div><b>Example:</b>
+        <div><b>GET:</b>Return the list of all badges<div><b>Response:</b>
                 <pre>{
     "count": 1,
     "next": null,
@@ -145,7 +203,7 @@ DELETE  : To delete resource
     </div>
     <div>
         <div>api/v1/contracts/</div>
-        <div><b>GET:</b>Return the list of all contracts<div><b>Example:</b>
+        <div><b>GET:</b>Return the list of all contracts<div><b>Response:</b>
                 <pre>{
     "count": 1,
     "next": null,
@@ -162,7 +220,7 @@ DELETE  : To delete resource
     </div>
     <div>
         <div>api/v1/companies/</div>
-        <div><b>GET:</b>Return the list of all companies<div><b>Example:</b>
+        <div><b>GET:</b>Return the list of all companies<div><b>Response:</b>
                 <pre>{
     "count": 1,
     "next": null,
