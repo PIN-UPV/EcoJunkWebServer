@@ -30,7 +30,7 @@ class JunkPointRealisticFactory(factory.django.DjangoModelFactory):
     type = factory.SubFactory("junk.tests.factories.JunkPointTypeFactory")
 
     class Params:
-        median = Point(-0.4084492, 39.4526725)
+        median = Point(-0.3768237, 39.4783281)
         std = 0.02
 
     @factory.lazy_attribute
