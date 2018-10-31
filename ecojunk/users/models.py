@@ -7,10 +7,8 @@ from django.contrib.auth.models import PermissionsMixin
 from django.contrib.gis.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
-from ecojunk.users.constants import ROL_TYPES
-import jwt
-from datetime import datetime, timedelta
-from django.conf import settings
+
+from ecojunk.users.constants import RIDER, ROL_TYPES
 
 
 class UserManager(BaseUserManager):
@@ -85,6 +83,10 @@ class User(AbstractBaseUser, PermissionsMixin):
     @property
     def token(self):
         return self._generate_jwt_token()
+
+    @property
+    def is_rider(self):
+        return self.permissions.filter(rol=RIDER).exists()
 
     def _generate_jwt_token(self):
         """

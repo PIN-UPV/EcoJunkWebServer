@@ -30,3 +30,6 @@ class DealSerializer(serializers.ModelSerializer):
         model = Deal
         fields = ("customer", "rider", "junk_point")
         extra_kwargs = {"date": {"read_only": True}}
+
+    def perform_create(self, serializer):
+        return serializer.save(customer=self.request.user)
