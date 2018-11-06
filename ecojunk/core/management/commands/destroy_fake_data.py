@@ -8,4 +8,3 @@ class Command(BaseCommand):
     def handle(self, *args, **options):
         JunkPoint.objects.all().delete()
 
-# sudo docker-compose -f local.yml run django python manage.py populate_fake_data

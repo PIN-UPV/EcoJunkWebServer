@@ -1,8 +1,6 @@
 from django.core.management.base import BaseCommand
 import random
-
 from ecojunk.junk.tests.factories import JunkPointRealisticFactory
-from django.contrib.gis.geos import Point
 
 
 class Command(BaseCommand):
@@ -32,4 +30,3 @@ class Command(BaseCommand):
             else:
                 if not print_coords: print("\t not elected for adding some junkpoints next to it ")
         print("Number of total junk points generated: " + str(number_of_junk_points))
-# sudo docker-compose -f local.yml run django python manage.py populate_fake_data

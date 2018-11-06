@@ -1,8 +1,6 @@
 import factory
 from factory.fuzzy import FuzzyText
 from ecojunk.core.tests.fuzzy import FuzzyPoint, ValenciaPoint
-from django.contrib.gis.db import models
-from django.utils.translation import ugettext_lazy as _
 from django.contrib.gis.geos import Point
 
 
