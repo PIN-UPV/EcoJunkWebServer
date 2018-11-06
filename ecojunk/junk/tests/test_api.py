@@ -4,7 +4,8 @@ from rest_framework.test import APITestCase
 from ecojunk.junk.models import Deal, JunkPoint
 from ecojunk.junk.tests.factories import (DealFactory, JunkPointFactory,
                                           JunkPointTypeFactory)
-from ecojunk.users.tests.factories import UserFactory
+from ecojunk.users.constants import RIDER, USER
+from ecojunk.users.tests.factories import RolFactory, UserFactory
 
 
 class JunkPointTypeResourceTest(APITestCase):
@@ -60,12 +61,22 @@ class DealTest(APITestCase):
     deal_factory = JunkPointFactory
 
     def setUp(self):
-        self.user = UserFactory()
+        self.user_rider = UserFactory()
+        self.user_customer = UserFactory()
+
+        self.rol_rider = RolFactory(rol=RIDER)
+        self.rol_customer = RolFactory(rol=USER)
+
+        self.user_rider.permissions.add(self.rol_rider)
+        self.user_rider.save()
+
+        self.user_customer.permissions.add(self.rol_customer)
+        self.user_customer.save()
 
     def test_list_deal(self):
         deals = DealFactory.create_batch(size=10)
 
-        self.client.force_authenticate(self.user)
+        self.client.force_authenticate(self.user_customer)
         response = self.client.get("/api/v1/deals/", format="json")
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
@@ -76,8 +87,30 @@ class DealTest(APITestCase):
         junk_point = JunkPointFactory()
         data = {"junk_point": junk_point.pk}
 
-        self.client.force_authenticate(self.user)
+        self.client.force_authenticate(self.user_customer)
         response = self.client.post("/api/v1/deals/", data=data, format="json")
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Deal.objects.count(), 1)
+
+    def test_accept_deal(self):
+        deal = DealFactory()
+        deal.rider = None
+        deal.save()
+
+        self.client.force_authenticate(self.user_rider)
+        response = self.client.post(f"/api/v1/deals/{deal.pk}/accept_deal/")
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertTrue(Deal.objects.get(pk=deal.pk).rider == self.user_rider)
+
+    def test_decline_deal(self):
+        deal = DealFactory()
+
+        deal.rider = self.user_rider
+        deal.save()
+
+        self.client.force_authenticate(self.user_rider)
+        response = self.client.post(f"/api/v1/deals/{deal.pk}/decline_deal/")
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)

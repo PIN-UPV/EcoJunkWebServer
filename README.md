@@ -85,3 +85,7 @@ to:
 To populate the database run this command:
 
 `docker-compose -f local.yml run --rm django python manage.py populate_fake_data`
+
+To drop the database run this command:
+
+`docker-compose -f local.yml run --rm django python manage.py destroy_fake_data`

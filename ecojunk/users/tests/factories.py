@@ -1,17 +1,20 @@
 from typing import Any, Sequence
 
+import factory
 from django.contrib.auth import get_user_model
-from factory import DjangoModelFactory, Faker, post_generation
+from factory.fuzzy import FuzzyChoice
+
+from ecojunk.users.constants import ROL_TYPES
 
 
-class UserFactory(DjangoModelFactory):
+class UserFactory(factory.django.DjangoModelFactory):
 
-    email = Faker("email")
-    name = Faker("name")
+    email = factory.Faker("email")
+    name = factory.Faker("name")
 
-    @post_generation
+    @factory.post_generation
     def password(self, create: bool, extracted: Sequence[Any], **kwargs):
-        password = Faker(
+        password = factory.Faker(
             "password",
             length=42,
             special_chars=True,
@@ -24,3 +27,11 @@ class UserFactory(DjangoModelFactory):
     class Meta:
         model = get_user_model()
         django_get_or_create = ["email"]
+
+
+class RolFactory(factory.django.DjangoModelFactory):
+
+    rol = FuzzyChoice(ROL_TYPES)
+
+    class Meta:
+        model = "users.Permission"
