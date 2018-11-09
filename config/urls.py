@@ -3,7 +3,7 @@ from django.conf.urls import url
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
-
+from ecojunk.junk.api.v1.resources import JunkPointMapResource
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls)
@@ -13,6 +13,8 @@ urlpatterns = [
 # Create a router and register our resources with it.
 urlpatterns += [
     # V1 endpoints
+
+    url(r"^api/v1/maps", JunkPointMapResource.as_view()),
     path("api/v1/", include("config.router", namespace="api_v1"))
 ]
 
