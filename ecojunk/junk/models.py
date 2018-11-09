@@ -34,7 +34,7 @@ class Deal(models.Model):
 
     class Meta:
         verbose_name = _("Deal")
-        verbose_name = _("Deals")
+        verbose_name_plural = _("Deals")
         ordering = ("id",)
 
     def __str__(self):
