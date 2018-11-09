@@ -28,6 +28,10 @@ class Deal(models.Model):
 
     date = models.DateTimeField(_("Date"), auto_now_add=True)
 
+    description = models.TextField(_("Description"), null=True, max_length=512)
+
+    price = models.DecimalField(max_digits=6, decimal_places=2)
+
     class Meta:
         verbose_name = _("Deal")
         verbose_name = _("Deals")
