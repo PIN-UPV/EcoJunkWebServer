@@ -51,7 +51,6 @@ class JunkPointResourceTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         data = response.json()
         serializer = JunkPointSerializer(junk_point)
-        print("data: " + str(data["results"]) + " serializer: " + str(serializer.data))
         self.assertTrue(serializer.data in data["results"])
 
     def test_create_junk_point(self):
