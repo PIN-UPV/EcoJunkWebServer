@@ -1,5 +1,5 @@
 import factory
-from factory.fuzzy import FuzzyText
+from factory.fuzzy import FuzzyText, FuzzyFloat
 from ecojunk.core.tests.fuzzy import FuzzyPoint, ValenciaPoint
 from django.contrib.gis.geos import Point
 
@@ -44,6 +44,7 @@ class DealFactory(factory.django.DjangoModelFactory):
     customer = factory.SubFactory("users.tests.factories.UserFactory")
     rider = factory.SubFactory("users.tests.factories.UserFactory")
     junk_point = factory.SubFactory("junk.tests.factories.JunkPointFactory")
+    price = FuzzyFloat(low=1, high=9999.99)
 
     class Meta:
         model = "junk.Deal"

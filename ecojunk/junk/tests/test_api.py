@@ -97,11 +97,10 @@ class DealTest(APITestCase):
 
     def test_create_deal(self):
         junk_point = JunkPointFactory()
-        data = {"junk_point": junk_point.pk}
+        data = {"junk_point": junk_point.pk, "price": 2.0}
 
         self.client.force_authenticate(self.user_customer)
         response = self.client.post("/api/v1/deals/", data=data, format="json")
-
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(Deal.objects.count(), 1)
 

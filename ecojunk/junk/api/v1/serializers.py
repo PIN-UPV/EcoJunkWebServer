@@ -28,7 +28,7 @@ class JunkPointSerializer(serializers.ModelSerializer):
 class DealSerializer(serializers.ModelSerializer):
     class Meta:
         model = Deal
-        fields = ("customer", "rider", "junk_point")
+        fields = ("customer", "rider", "junk_point", "price")
         extra_kwargs = {"date": {"read_only": True}}
 
     def perform_create(self, serializer):
