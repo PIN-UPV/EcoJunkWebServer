@@ -1,4 +1,3 @@
-from django.contrib.auth import authenticate
 from rest_framework import serializers
 
 from ecojunk.users.models import User
@@ -11,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ("email", "password", "token", "id")
+        fields = ("email", "password", "id")
 
         read_only_fields = ("token",)
 

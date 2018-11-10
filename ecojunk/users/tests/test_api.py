@@ -57,4 +57,4 @@ class UserAuthenticationTest(APITestCase):
         response = self.client.get(f"{self.url}/me/")
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
-        self.assertTrue("token" in response.data)
+        self.assertTrue("id" in response.data)
