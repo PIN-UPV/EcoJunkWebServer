@@ -3,9 +3,11 @@ from rest_framework.test import APITestCase
 
 from ecojunk.junk.models import Deal, JunkPoint
 from ecojunk.junk.tests.factories import (DealFactory, JunkPointFactory,
-                                          JunkPointTypeFactory)
+                                          JunkPointTypeFactory, JunkPointRealisticFactory)
+from ecojunk.junk.api.v1.serializers import JunkPointSerializer
 from ecojunk.users.constants import RIDER, USER
 from ecojunk.users.tests.factories import RolFactory, UserFactory
+from django.contrib.gis.geos import Point
 
 
 class JunkPointTypeResourceTest(APITestCase):
@@ -40,6 +42,17 @@ class JunkPointResourceTest(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         data = response.json()
         self.assertEqual(len(junk_points), data["count"])
+
+    def test_list_map_points(self):
+        junk_point = JunkPointRealisticFactory()
+        location = Point(39.4783281, -0.3768237)
+        self.client.force_authenticate(self.user)
+        response = self.client.get("/api/v1/maps?lng=" + str(location[0]) + "&lat=" + str(location[1]), format="json")
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        data = response.json()
+        serializer = JunkPointSerializer(junk_point)
+        print("data: " + str(data["results"]) + " serializer: " + str(serializer.data))
+        self.assertTrue(serializer.data in data["results"])
 
     def test_create_junk_point(self):
         point_type = JunkPointTypeFactory()

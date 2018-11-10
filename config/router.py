@@ -2,11 +2,10 @@ from django.urls import include, path
 from rest_framework.routers import SimpleRouter
 from rest_framework_jwt.views import (obtain_jwt_token, refresh_jwt_token,
                                       verify_jwt_token)
-
 from ecojunk.companies.api.v1.resources import (CompanyResource,
                                                 ContractResource)
 from ecojunk.junk.api.v1.resources import (DealResource, JunkPointResource,
-                                           JunkPointTypeResource)
+                                           JunkPointTypeResource, JunkPointMapResource)
 from ecojunk.rewards.api.v1.resources import BadgeResource, MissionResource
 from ecojunk.users.api.v1.resources import UserResource
 from ecojunk.users.api.v1.views import RegistrationAPIView
@@ -32,4 +31,5 @@ urlpatterns = [
     path("users/register/", RegistrationAPIView.as_view()),
     path("users/login/", obtain_jwt_token),
     path("users/me/", UserResource.as_view()),
+    path("maps", JunkPointMapResource.as_view()),
 ]
