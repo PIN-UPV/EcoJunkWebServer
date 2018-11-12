@@ -58,7 +58,7 @@ class JunkPointResourceTest(APITestCase):
         data = {
             "street_name": "Junk point street name",
             "description": "Junk point description",
-            "location": "POINT (12.492324113849 41.890307434153)",
+            "location": "POINT (2.2945 48.8583)",
             "type": point_type.pk,
         }
 
