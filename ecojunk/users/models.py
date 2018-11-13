@@ -56,7 +56,7 @@ class User(AbstractBaseUser, PermissionsMixin):
         "users.Permission", verbose_name=_("Permissions")
     )
     completed_missions = models.ManyToManyField(
-        "rewards.Mission", verbose_name=_("Completed missions")
+        "rewards.Mission", blank=True, verbose_name=_("Completed missions")
     )
 
     is_staff = models.BooleanField(
