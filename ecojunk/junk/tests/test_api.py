@@ -2,7 +2,6 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 
 from ecojunk.junk.models import Deal, JunkPoint
-<<<<<<< HEAD
 from ecojunk.junk.tests.factories import (
     DealFactory,
     JunkPointFactory,
@@ -13,12 +12,6 @@ from ecojunk.junk.api.v1.serializers import JunkPointSerializer
 from ecojunk.users.constants import RIDER, USER
 from ecojunk.users.tests.factories import RolFactory, UserFactory
 from django.contrib.gis.geos import Point
-=======
-from ecojunk.junk.tests.factories import (DealFactory, JunkPointFactory,
-                                          JunkPointTypeFactory)
-from ecojunk.users.constants import RIDER, USER
-from ecojunk.users.tests.factories import RolFactory, UserFactory
->>>>>>> 7e77ea6cc01cffbd9576a6baedbe3ce98aec8034
 
 
 class JunkPointTypeResourceTest(APITestCase):

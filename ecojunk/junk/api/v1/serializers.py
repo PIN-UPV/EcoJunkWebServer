@@ -8,7 +8,7 @@ from ecojunk.junk.models import Deal, JunkPoint, JunkPointType
 class JunkPointTypeSerializer(serializers.ModelSerializer):
     class Meta:
         model = JunkPointType
-        fields = ("name", "description")
+        fields = ("id", "name", "description")
 
 
 class JunkPointSerializer(serializers.ModelSerializer):
@@ -17,7 +17,7 @@ class JunkPointSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = JunkPoint
-        fields = ("street_name", "description", "location", "type")
+        fields = ("id", "street_name", "description", "location", "type")
 
     def to_representation(self, instance):
         response = super().to_representation(instance)
@@ -28,7 +28,7 @@ class JunkPointSerializer(serializers.ModelSerializer):
 class DealSerializer(serializers.ModelSerializer):
     class Meta:
         model = Deal
-        fields = ("customer", "rider", "junk_point", "price")
+        fields = ("id", "customer", "rider", "junk_point", "price")
         extra_kwargs = {"date": {"read_only": True}}
 
     def perform_create(self, serializer):
