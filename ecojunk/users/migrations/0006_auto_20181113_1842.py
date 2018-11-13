@@ -5,14 +5,14 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('users', '0005_auto_20181113_1836'),
-    ]
+    dependencies = [("users", "0005_auto_20181113_1836")]
 
     operations = [
         migrations.AlterField(
-            model_name='user',
-            name='completed_missions',
-            field=models.ManyToManyField(blank=True, to='rewards.Mission', verbose_name='Completed missions'),
-        ),
+            model_name="user",
+            name="completed_missions",
+            field=models.ManyToManyField(
+                blank=True, to="rewards.Mission", verbose_name="Completed missions"
+            ),
+        )
     ]

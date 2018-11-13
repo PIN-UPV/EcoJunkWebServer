@@ -16,4 +16,7 @@ class ValenciaPoint(BaseFuzzyAttribute):
         self.std = std
 
     def fuzz(self):
-        return Point(random.gauss(self.median[0], self.std), random.gauss(self.median[1], self.std))
+        return Point(
+            random.gauss(self.median[0], self.std),
+            random.gauss(self.median[1], self.std),
+        )

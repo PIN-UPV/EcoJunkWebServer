@@ -7,19 +7,31 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('junk', '0010_auto_20181113_1842'),
-    ]
+    dependencies = [("junk", "0010_auto_20181113_1842")]
 
     operations = [
         migrations.AlterField(
-            model_name='deal',
-            name='customer',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='deals', to=settings.AUTH_USER_MODEL, verbose_name='Customer'),
+            model_name="deal",
+            name="customer",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="deals",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Customer",
+            ),
         ),
         migrations.AlterField(
-            model_name='deal',
-            name='rider',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='deliveries', to=settings.AUTH_USER_MODEL, verbose_name='Rider'),
+            model_name="deal",
+            name="rider",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="deliveries",
+                to=settings.AUTH_USER_MODEL,
+                verbose_name="Rider",
+            ),
         ),
     ]

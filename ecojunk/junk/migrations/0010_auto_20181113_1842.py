@@ -6,19 +6,30 @@ import django.db.models.deletion
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('junk', '0009_auto_20181109_1525'),
-    ]
+    dependencies = [("junk", "0009_auto_20181109_1525")]
 
     operations = [
         migrations.AlterField(
-            model_name='junkpoint',
-            name='contract',
-            field=models.ForeignKey(blank=True, null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='points', to='companies.Contract', verbose_name='Contract'),
+            model_name="junkpoint",
+            name="contract",
+            field=models.ForeignKey(
+                blank=True,
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="points",
+                to="companies.Contract",
+                verbose_name="Contract",
+            ),
         ),
         migrations.AlterField(
-            model_name='junkpoint',
-            name='type',
-            field=models.ForeignKey(null=True, on_delete=django.db.models.deletion.SET_NULL, related_name='points', to='junk.JunkPointType', verbose_name='Junk point type'),
+            model_name="junkpoint",
+            name="type",
+            field=models.ForeignKey(
+                null=True,
+                on_delete=django.db.models.deletion.SET_NULL,
+                related_name="points",
+                to="junk.JunkPointType",
+                verbose_name="Junk point type",
+            ),
         ),
     ]
