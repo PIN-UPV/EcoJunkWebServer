@@ -2,7 +2,6 @@ from django.contrib.gis.geos import Point
 from django.contrib.gis.measure import Distance
 from rest_framework import status
 from rest_framework.decorators import action
-from rest_framework.generics import ListAPIView
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 
