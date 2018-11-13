@@ -2,8 +2,12 @@ from rest_framework import status
 from rest_framework.test import APITestCase
 
 from ecojunk.junk.models import Deal, JunkPoint
-from ecojunk.junk.tests.factories import (DealFactory, JunkPointFactory,
-                                          JunkPointTypeFactory, JunkPointRealisticFactory)
+from ecojunk.junk.tests.factories import (
+    DealFactory,
+    JunkPointFactory,
+    JunkPointTypeFactory,
+    JunkPointRealisticFactory,
+)
 from ecojunk.junk.api.v1.serializers import JunkPointSerializer
 from ecojunk.users.constants import RIDER, USER
 from ecojunk.users.tests.factories import RolFactory, UserFactory
@@ -45,9 +49,11 @@ class JunkPointResourceTest(APITestCase):
 
     def test_list_map_points(self):
         junk_point = JunkPointRealisticFactory()
-        location = Point(39.4783281, -0.3768237)
+        location = Point(39.478_328_1, -0.376_823_7)
         self.client.force_authenticate(self.user)
-        response = self.client.get("/api/v1/maps?lng=" + str(location[0]) + "&lat=" + str(location[1]), format="json")
+        response = self.client.get(
+            f"/api/v1/junk_points/?lat={location[1]}&lng={location[0]}", format="json"
+        )
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         data = response.json()
         serializer = JunkPointSerializer(junk_point)

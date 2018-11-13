@@ -7,4 +7,3 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         JunkPoint.objects.all().delete()
-

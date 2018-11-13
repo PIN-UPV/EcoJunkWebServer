@@ -5,14 +5,16 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('users', '0003_auto_20181017_0829'),
-    ]
+    dependencies = [("users", "0003_auto_20181017_0829")]
 
     operations = [
         migrations.AlterField(
-            model_name='permission',
-            name='rol',
-            field=models.CharField(choices=[('user', 'User'), ('rider', 'Rider')], max_length=255, verbose_name='Rol'),
-        ),
+            model_name="permission",
+            name="rol",
+            field=models.CharField(
+                choices=[("user", "User"), ("rider", "Rider")],
+                max_length=255,
+                verbose_name="Rol",
+            ),
+        )
     ]

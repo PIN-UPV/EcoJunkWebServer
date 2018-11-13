@@ -5,19 +5,19 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('junk', '0007_auto_20181023_1103'),
-    ]
+    dependencies = [("junk", "0007_auto_20181023_1103")]
 
     operations = [
         migrations.AddField(
-            model_name='deal',
-            name='description',
-            field=models.TextField(max_length=512, null=True, verbose_name='Description'),
+            model_name="deal",
+            name="description",
+            field=models.TextField(
+                max_length=512, null=True, verbose_name="Description"
+            ),
         ),
         migrations.AddField(
-            model_name='deal',
-            name='price',
+            model_name="deal",
+            name="price",
             field=models.DecimalField(decimal_places=2, default=1.0, max_digits=6),
             preserve_default=False,
         ),

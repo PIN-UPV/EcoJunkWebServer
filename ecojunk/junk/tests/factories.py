@@ -37,7 +37,7 @@ class JunkPointRealisticFactory(factory.django.DjangoModelFactory):
 
     class Meta:
         model = "junk.JunkPoint"
-        exclude = ('median', 'std',)
+        exclude = ("median", "std")
 
 
 class DealFactory(factory.django.DjangoModelFactory):

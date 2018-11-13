@@ -6,14 +6,18 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('rewards', '0003_auto_20181023_1111'),
-    ]
+    dependencies = [("rewards", "0003_auto_20181023_1111")]
 
     operations = [
         migrations.AlterField(
-            model_name='mission',
-            name='difficulty',
-            field=models.IntegerField(validators=[django.core.validators.MinValueValidator(0), django.core.validators.MaxValueValidator(10)], verbose_name='Difficulty'),
-        ),
+            model_name="mission",
+            name="difficulty",
+            field=models.IntegerField(
+                validators=[
+                    django.core.validators.MinValueValidator(0),
+                    django.core.validators.MaxValueValidator(10),
+                ],
+                verbose_name="Difficulty",
+            ),
+        )
     ]

@@ -2,6 +2,7 @@ from django.conf import settings
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+
 urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls)
@@ -11,8 +12,6 @@ urlpatterns = [
 # Create a router and register our resources with it.
 urlpatterns += [
     # V1 endpoints
-
-
     path("api/v1/", include("config.router", namespace="api_v1"))
 ]
 
