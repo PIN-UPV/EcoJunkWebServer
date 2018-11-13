@@ -7,6 +7,7 @@ class Deal(models.Model):
         "users.User",
         verbose_name=_("Customer"),
         related_name="deals",
+        blank=True,
         null=True,
         on_delete=models.SET_NULL,
     )
@@ -14,6 +15,7 @@ class Deal(models.Model):
         "users.User",
         verbose_name=_("Rider"),
         related_name="deliveries",
+        blank=True,
         null=True,
         on_delete=models.SET_NULL,
     )
@@ -89,7 +91,7 @@ class JunkPoint(models.Model):
 
     type = models.ForeignKey(
         "junk.JunkPointType",
-        verbose_name=_("Junk point"),
+        verbose_name=_("Junk point type"),
         related_name="points",
         null=True,
         on_delete=models.SET_NULL,
@@ -99,6 +101,7 @@ class JunkPoint(models.Model):
         "companies.Contract",
         verbose_name=_("Contract"),
         related_name="points",
+        blank=True,
         null=True,
         on_delete=models.SET_NULL,
     )
