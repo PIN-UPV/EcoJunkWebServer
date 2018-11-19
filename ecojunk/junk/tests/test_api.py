@@ -60,12 +60,12 @@ class JunkPointResourceTest(APITestCase):
         self.assertTrue(serializer.data in data["results"])
 
     def test_create_junk_point(self):
-        point_type = JunkPointTypeFactory()
+        point_types = JunkPointTypeFactory.create_batch(size=3)
         data = {
             "street_name": "Junk point street name",
             "description": "Junk point description",
             "location": "POINT (2.2945 48.8583)",
-            "type": point_type.pk,
+            "types": [point_types[0].pk, point_types[1].pk, point_types[2].pk],
         }
 
         self.client.force_authenticate(self.user)

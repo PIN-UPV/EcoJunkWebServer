@@ -17,11 +17,13 @@ class JunkPointSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = JunkPoint
-        fields = ("id", "street_name", "description", "location", "type")
+        fields = ("id", "street_name", "description", "location", "types")
 
     def to_representation(self, instance):
         response = super().to_representation(instance)
-        response["type"] = JunkPointTypeSerializer(instance.type).data
+        for i in range(0, len(response["types"])):
+            response["types"][i] = JunkPointTypeSerializer(instance.types.all()[i]).data
+        # response["type"] = JunkPointTypeSerializer(instance.type).data
         return response
 
 

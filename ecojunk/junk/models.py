@@ -89,14 +89,19 @@ class JunkPoint(models.Model):
 
     location = models.PointField(_("Location"))
 
-    type = models.ForeignKey(
-        "junk.JunkPointType",
-        verbose_name=_("Junk point type"),
-        related_name="points",
-        null=True,
-        on_delete=models.SET_NULL,
-    )
+    # type = models.ForeignKey(
+    #     "junk.JunkPointType",
+    #     verbose_name=_("Junk point type"),
+    #     related_name="points",
+    #     null=True,
+    #     on_delete=models.SET_NULL,
+    # )
 
+    types = models.ManyToManyField(
+        "junk.JunkPointType",
+        verbose_name=_("Junk point"),
+        related_name="points",
+    )
     contract = models.ForeignKey(
         "companies.Contract",
         verbose_name=_("Contract"),

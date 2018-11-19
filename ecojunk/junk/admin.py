@@ -5,7 +5,7 @@ from ecojunk.junk.models import Deal, JunkPoint, JunkPointType, Trash, TrashType
 
 @admin.register(JunkPoint)
 class JunkPointAdmin(admin.ModelAdmin):
-    list_display = ("location", "type", "contract")
+    list_display = ("location", "contract")
     search_fields = ("location",)
 
 
