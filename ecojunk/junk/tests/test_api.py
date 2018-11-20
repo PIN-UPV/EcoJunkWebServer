@@ -111,6 +111,18 @@ class DealTest(APITestCase):
         self.assertEqual(Deal.objects.count(), 1)
         self.assertIn("Microwave", response.json()["junk"])
 
+    def test_delete_deal(self):
+        junk_point = JunkPointFactory()
+        data = {"junk_point": junk_point.pk, "price": 2.0, "junk": "Microwave"}
+
+        self.client.force_authenticate(self.user_customer)
+        response = self.client.post("/api/v1/deals/", data=data, format="json")
+        self.assertEqual(response.status_code, status.HTTP_201_CREATED)
+
+        deal_id = response.json()["id"]
+        response = self.client.delete(f"/api/v1/deals/{deal_id}/")
+        self.assertEqual(response.status_code, status.HTTP_204_NO_CONTENT)
+
     def test_accept_deal(self):
         deal = DealFactory()
         deal.rider = None
@@ -121,6 +133,7 @@ class DealTest(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertTrue(Deal.objects.get(pk=deal.pk).rider == self.user_rider)
+        self.assertIsNotNone(Deal.objects.get(pk=deal.pk).accepted_date)
 
     def test_decline_deal(self):
         deal = DealFactory()
@@ -132,3 +145,4 @@ class DealTest(APITestCase):
         response = self.client.post(f"/api/v1/deals/{deal.pk}/decline_deal/")
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertIsNone(Deal.objects.get(pk=deal.pk).accepted_date)

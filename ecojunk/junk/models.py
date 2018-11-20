@@ -30,9 +30,10 @@ class Deal(models.Model):
         on_delete=models.SET_NULL,
     )
 
-    date = models.DateTimeField(_("Date"), auto_now_add=True)
-
     price = models.DecimalField(max_digits=6, decimal_places=2)
+
+    created_date = models.DateTimeField(_("Date"), auto_now_add=True)
+    accepted_date = models.DateTimeField(_("Date"), null=True)
 
     class Meta:
         verbose_name = _("Deal")

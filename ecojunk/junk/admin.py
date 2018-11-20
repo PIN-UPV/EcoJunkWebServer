@@ -11,7 +11,7 @@ class JunkPointAdmin(admin.ModelAdmin):
 
 @admin.register(Deal)
 class DealAdmin(admin.ModelAdmin):
-    list_display = ("customer", "rider", "junk_point", "date")
+    list_display = ("customer", "rider", "junk_point", "created_date", "accepted_date")
     search_fields = ("junk_point", "date")
 
 

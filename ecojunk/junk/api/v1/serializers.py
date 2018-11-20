@@ -32,11 +32,21 @@ class JunkPointSerializer(serializers.ModelSerializer):
 class DealSerializer(serializers.ModelSerializer):
     class Meta:
         model = Deal
-        fields = ("id", "junk", "customer", "rider", "junk_point", "price", "date")
+        fields = (
+            "id",
+            "junk",
+            "customer",
+            "rider",
+            "junk_point",
+            "price",
+            "created_date",
+            "accepted_date",
+        )
         extra_kwargs = {
             "customer": {"read_only": True},
             "rider": {"read_only": True},
-            "date": {"read_only": True},
+            "created_date": {"read_only": True},
+            "accepted_date": {"read_only": True},
         }
 
     def to_representation(self, instance):

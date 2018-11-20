@@ -1,5 +1,6 @@
 from django.contrib.gis.geos import Point
 from django.contrib.gis.measure import Distance
+from django.utils import timezone
 from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -7,6 +8,7 @@ from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
 
 from ecojunk.core.api.permissions import NoDeletes, NoUpdates
 from ecojunk.junk.api.v1.exceptions import DealAlreadyPicked, DealNotYours
+from ecojunk.junk.api.v1.permissions import IsUserOwnerForDeletes
 from ecojunk.junk.api.v1.serializers import (
     DealSerializer,
     JunkPointSerializer,
@@ -44,7 +46,7 @@ class JunkPointTypeResource(ReadOnlyModelViewSet):
 class DealResource(ModelViewSet):
     queryset = Deal.objects.all()
     serializer_class = DealSerializer
-    permission_classes = [RiderPermissions, NoDeletes, NoUpdates]
+    permission_classes = [RiderPermissions, IsUserOwnerForDeletes, NoUpdates]
 
     def perform_create(self, serializer):
         return serializer.save(customer=self.request.user)
@@ -55,6 +57,7 @@ class DealResource(ModelViewSet):
         if deal.rider:
             raise DealAlreadyPicked
         deal.rider = request.user
+        deal.accepted_date = timezone.now()
         deal.save()
         return Response(status=status.HTTP_200_OK)
 
@@ -64,5 +67,6 @@ class DealResource(ModelViewSet):
         if deal.rider and deal.rider != self.request.user:
             raise DealNotYours
         deal.rider = None
+        deal.accepted_date = None
         deal.save()
         return Response(status=status.HTTP_200_OK)
