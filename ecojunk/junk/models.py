@@ -41,7 +41,7 @@ class Deal(models.Model):
         ordering = ("id",)
 
     def __str__(self):
-        return str(self.date)
+        return str(self.created_date)
 
 
 class Trash(models.Model):
