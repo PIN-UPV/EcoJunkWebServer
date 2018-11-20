@@ -33,7 +33,11 @@ class DealSerializer(serializers.ModelSerializer):
     class Meta:
         model = Deal
         fields = ("id", "customer", "rider", "junk_point", "price", "date")
-        extra_kwargs = {"date": {"read_only": True}}
+        extra_kwargs = {
+            "customer": {"read_only": True},
+            "rider": {"read_only": True},
+            "date": {"read_only": True},
+        }
 
     def to_representation(self, instance):
         response = super().to_representation(instance)
