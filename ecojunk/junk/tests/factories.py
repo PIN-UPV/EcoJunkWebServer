@@ -61,6 +61,7 @@ class JunkPointRealisticFactory(factory.django.DjangoModelFactory):
 
 
 class DealFactory(factory.django.DjangoModelFactory):
+    junk = FuzzyText()
     customer = factory.SubFactory("users.tests.factories.UserFactory")
     rider = factory.SubFactory("users.tests.factories.UserFactory")
     junk_point = factory.SubFactory("junk.tests.factories.JunkPointFactory")

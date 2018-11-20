@@ -32,7 +32,7 @@ class JunkPointSerializer(serializers.ModelSerializer):
 class DealSerializer(serializers.ModelSerializer):
     class Meta:
         model = Deal
-        fields = ("id", "customer", "rider", "junk_point", "price", "date")
+        fields = ("id", "junk", "customer", "rider", "junk_point", "price", "date")
         extra_kwargs = {
             "customer": {"read_only": True},
             "rider": {"read_only": True},
