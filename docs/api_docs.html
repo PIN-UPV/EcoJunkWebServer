@@ -1,13 +1,11 @@
-<html>
-
-<head>
+<html><head>
     <title>API</title>
-</head>
+<link rel="stylesheet" type="text/css" href="custom.css"></head>
 
 <body>
     <div>
         <h2>Allowed HTTPs requests:</h2>
-        <pre>PUT     : To create resource 
+        <pre>PUT     : To create resource
 POST    : Update resource
 GET     : Get a resource or list of resources
 DELETE  : To delete resource
@@ -106,65 +104,121 @@ DELETE  : To delete resource
     <div>
         <h2>References:</h2>
         <div>
-            <div>api/v1/deals/</div>
-            <div><b>GET:</b> Returns the list of deals<div><b>Response:</b>
+            <div class="endpointname">api/v1/deals/</div>
+            <div class="description"><b>GET:</b> Returns the list of deals<div><b>Response:</b>
                     <pre>{
-    "count": 0,
-    "next": null,
-    "previous": null,
-    "results": []
+  "count": 2,
+  "next": null,
+  "previous": null,
+  "results": [
+      {
+          "id": 1,
+          "customer": 7,
+          "rider": 2,
+          "junk_point": 4098,
+          "price": "49.99"
+      },
+      {
+          "id": 2,
+          "customer": 1,
+          "rider": 4,
+          "junk_point": 6087,
+          "price": "2.00"
+      }
+  ]
+}
+                  </pre>
+                </div>
+              <b>POST:</b> If you are a customer, create a deal <div><b>Parameters:</b>
+                  <div>
+                        <ul>
+                            <li><i> price:</i> The integer positive price of the deal</li>
+                            <li><i> customer:</i> The customer id reference to the owner of the deal</li>
+                            <li><i> rider:</i> The customer id reference to the rider of the deal (OPTIONAL)</li>
+                            <li><i> junk_point:</i> The junk point id reference of the junk point (OPTIONAL)</li>
+                        </ul>
+                    </div>
+                <b>Response:</b>
+                    <pre>{
+    "id": 5,
+    "customer": 7,
+    "rider": 2,
+    "junk_point": 6087,
+    "price": "6.00"
 }</pre>
                 </div>
-            </div>
-            <div><b>POST:</b> If you are a rider, accept the deal (authentication required)
+            </div></div> <div>
+            <div class="endpointname">api/v1/deals/accept_deal</div>
+            <div class="description"><b>POST:</b> If you are a rider, accept the deal (authentication required)
                 <div><b>Parameters:</b>
                     <ul>
                         <li><i> id:</i> Numeric id of the Deal to perform action with. Example: 1</li>
                     </ul>
                 </div>
             </div>
-            <div><b>PUT:</b> If you are a customer, add a deal (authentication required)
+            <div class="description"><b>PUT:</b> If you are a customer, add a deal (authentication required)
                 <div><b>Parameters:</b>
                     <ul>
                         <li><i> junk_point:</i> The numeric id of the JunkPoint for the deal. Example: 1</li>
                     </ul>
                 </div>
-            </div>
-            <div><b>DELETE:</b> If you are a customer with a pending deal, delete the deal (authentication required)
+            </div> </div>
+             <div><div class="endpointname">api/v1/deals/decline_deal</div>
+<div class="description"><b>POST:</b> If you are a rider with an accepted deal, delete that deal (authentication required)
                 <div><b>Parameters:</b>
                     <ul>
-                        <li><i> id:</i> The numeric id of the Deal to delete. Example: 1</li>
+                        <li><i> id:</i> The numeric id of the Deal to decline. Example: 1</li>
                     </ul>
                 </div>
-            </div>
-        </div>
-    </div>
+            </div></div>
+
+
+
     <div>
-        <div>api/v1/junk_points/</div>
-        <div><b>GET:</b>Return the list of all junk points<div><b>Response:</b>
+        <div class="endpointname">api/v1/junk_points/</div>
+        <div class="description"><b>GET:</b>Return the list of all junk points<div><b>Response:</b>
                 <pre>{
-    "count": 1,
-    "next": null,
+    "count": 100,
+    "next": "http://localhost:8000/api/v1/junk_points/?page=2",
     "previous": null,
     "results": [
         {
+            "id": 6076,
+            "street_name": "SJqYhXZPBlPz",
+            "description": "azlwgStfZpPa",
             "location": {
                 "type": "Point",
                 "coordinates": [
-                    0.02197265625,
-                    -0.000411987566627
+                    39.467905501523546,
+                    -0.357235276276142
                 ]
             },
-            "type": 1
+            "types": []
         }
     ]
 }</pre>
             </div>
         </div>
-    </div>
-    <div>
-        <div>api/v1/missions/</div>
-        <div><b>GET:</b>Return the list of all missions<div><b>Response:</b>
+    </div><div>
+        <div class="endpointname">api/v1/junk_point_types/</div>
+        <div class="description"><b>GET:</b>Return the list of all junk point types<div><b>Response:</b>
+                <pre>{
+    "count": 1,
+    "next": "http://localhost:8000/api/v1/junk_point_types/?page=2",
+    "previous": null,
+    "results": [
+        {
+            "id": 1,
+            "name": "batteries",
+            "description": "All kind of batteries"
+        },
+      ]
+}</pre>
+            </div>
+        </div>
+    </div><div>
+        <div class="endpointname">api/v1/missions/</div>
+        <div class="description"><b>GET:</b>Return the list of all missions<div><b>Response:</b>
                 <pre>{
     "count": 1,
     "next": null,
@@ -182,10 +236,9 @@ DELETE  : To delete resource
 }</pre>
             </div>
         </div>
-    </div>
-    <div>
-        <div>api/v1/badges/</div>
-        <div><b>GET:</b>Return the list of all badges<div><b>Response:</b>
+    </div><div>
+        <div class="endpointname">api/v1/badges/</div>
+        <div class="description"><b>GET:</b>Return the list of all badges<div><b>Response:</b>
                 <pre>{
     "count": 1,
     "next": null,
@@ -200,10 +253,9 @@ DELETE  : To delete resource
             </div>
         </div>
 
-    </div>
-    <div>
-        <div>api/v1/contracts/</div>
-        <div><b>GET:</b>Return the list of all contracts<div><b>Response:</b>
+    </div><div>
+        <div class="endpointname">api/v1/contracts/</div>
+        <div class="description"><b>GET:</b>Return the list of all contracts<div><b>Response:</b>
                 <pre>{
     "count": 1,
     "next": null,
@@ -217,10 +269,9 @@ DELETE  : To delete resource
 }</pre>
             </div>
         </div>
-    </div>
-    <div>
-        <div>api/v1/companies/</div>
-        <div><b>GET:</b>Return the list of all companies<div><b>Response:</b>
+    </div><div>
+        <div class="endpointname">api/v1/companies/</div>
+        <div class="description"><b>GET:</b>Return the list of all companies<div><b>Response:</b>
                 <pre>{
     "count": 1,
     "next": null,
@@ -234,8 +285,8 @@ DELETE  : To delete resource
 }</pre>
             </div>
         </div>
-    </div>
-    </div>
-</body>
+    </div></div>
 
-</html>
+
+
+</body></html>
