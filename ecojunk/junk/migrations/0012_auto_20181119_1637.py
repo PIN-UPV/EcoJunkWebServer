@@ -5,18 +5,17 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('junk', '0011_auto_20181113_1843'),
-    ]
+    dependencies = [("junk", "0011_auto_20181113_1843")]
 
     operations = [
-        migrations.RemoveField(
-            model_name='junkpoint',
-            name='type',
-        ),
+        migrations.RemoveField(model_name="junkpoint", name="type"),
         migrations.AddField(
-            model_name='junkpoint',
-            name='types',
-            field=models.ManyToManyField(related_name='points', to='junk.JunkPointType', verbose_name='Junk point'),
+            model_name="junkpoint",
+            name="types",
+            field=models.ManyToManyField(
+                related_name="points",
+                to="junk.JunkPointType",
+                verbose_name="Junk point",
+            ),
         ),
     ]

@@ -47,7 +47,7 @@ class JunkPointResourceTest(APITestCase):
         data = response.json()
         self.assertEqual(len(junk_points), data["count"])
 
-    def test_list_map_points(self):
+    def test_list_junk_points_with_coords(self):
         junk_point = JunkPointRealisticFactory()
         location = Point(39.478_328_1, -0.376_823_7)
         self.client.force_authenticate(self.user)
