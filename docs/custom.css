@@ -1,7 +1,31 @@
 .endpointname{
-  font-size: 25;
+    font-size: 25;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    padding: 5px;
+    padding-left: 15px;
+    margin-bottom: 5px;
+    background-color: #464646;
 }
 
 .description{
   margin-left: 50px;
+  padding: 5px;
+  color: black;
+}
+pre{
+    background-color: #e5e5e5;
+    margin: 2px;
+    padding: 5px;
+    border: #bcbbbb 2px solid;
+    border-radius: 5px;
+}
+.apibox{
+   background-color: #d0d0d0;
+   color: white;
+   border-radius: 5px;
+   margin-bottom: 15px;
+}
+body{
+  font-family: arial;
 }
