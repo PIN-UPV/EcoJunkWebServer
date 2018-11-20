@@ -10,7 +10,7 @@ from ecojunk.junk.tests.factories import (
 )
 from ecojunk.junk.api.v1.serializers import JunkPointSerializer
 from ecojunk.users.constants import RIDER, USER
-from ecojunk.users.tests.factories import RolFactory, UserFactory
+from ecojunk.users.tests.factories import PermissionFactory, UserFactory
 from django.contrib.gis.geos import Point
 
 
@@ -82,8 +82,8 @@ class DealTest(APITestCase):
         self.user_rider = UserFactory()
         self.user_customer = UserFactory()
 
-        self.rol_rider = RolFactory(rol=RIDER)
-        self.rol_customer = RolFactory(rol=USER)
+        self.rol_rider = PermissionFactory(rol=RIDER)
+        self.rol_customer = PermissionFactory(rol=USER)
 
         self.user_rider.permissions.add(self.rol_rider)
         self.user_rider.save()

@@ -1,18 +1,29 @@
 from rest_framework import serializers
 
-from ecojunk.users.models import User
+from ecojunk.users.models import User, Permission
+
+
+class PermissionSerializer(serializers.ModelSerializer):
+    """Serializers to handle Permission model."""
+
+    class Meta:
+        model = Permission
+        fields = ["id", "rol"]
 
 
 class UserSerializer(serializers.ModelSerializer):
     """Handles serialization and deserialization of User objects."""
 
+    permissions = PermissionSerializer(many=True)
     password = serializers.CharField(max_length=128, min_length=8, write_only=True)
 
     class Meta:
         model = User
-        fields = ("id", "email", "password")
-
-        read_only_fields = ("token",)
+        fields = ("id", "email", "permissions", "password")
+        extra_kwargs = {
+            "token": {"read_only": True},
+            "permissions": {"read_only": True},
+        }
 
     def update(self, instance, validated_data):
         """Performs an update on a User."""
@@ -43,3 +54,4 @@ class RegistrationSerializer(serializers.ModelSerializer):
 
     def create(self, validated_data):
         return User.objects.create_user(**validated_data)
+

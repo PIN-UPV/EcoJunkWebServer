@@ -24,12 +24,26 @@ class UserFactory(factory.django.DjangoModelFactory):
         ).generate(extra_kwargs={})
         self.set_password(password)
 
+    @factory.post_generation
+    def permissions(self, create: bool, extracted: Sequence[Any], **kwargs):
+        if not create:
+            # Simple build, do nothing.
+            return
+
+        if extracted:
+            # A list of groups were passed in, use them
+            for permission in extracted:
+                self.permissions.add(permission)
+        else:
+            permission = PermissionFactory()
+            self.permissions.add(permission)
+
     class Meta:
         model = get_user_model()
         django_get_or_create = ["email"]
 
 
-class RolFactory(factory.django.DjangoModelFactory):
+class PermissionFactory(factory.django.DjangoModelFactory):
 
     rol = FuzzyChoice(ROL_TYPES)
 
