@@ -1,11 +1,13 @@
 import factory
-from factory.fuzzy import FuzzyText, FuzzyFloat
+from factory.fuzzy import FuzzyText, FuzzyFloat, FuzzyChoice
 from ecojunk.core.tests.fuzzy import FuzzyPoint, ValenciaPoint
 from django.contrib.gis.geos import Point
+from ecojunk.junk.constants import TYPES
+import random
 
 
 class JunkPointTypeFactory(factory.django.DjangoModelFactory):
-    name = FuzzyText()
+    name = FuzzyChoice(TYPES)
     description = FuzzyText()
 
     class Meta:
@@ -35,7 +37,7 @@ class JunkPointFactory(factory.django.DjangoModelFactory):
 class JunkPointRealisticFactory(factory.django.DjangoModelFactory):
     street_name = FuzzyText()
     description = FuzzyText()
-    types = factory.SubFactory("junk.tests.factories.JunkPointTypeFactory")
+    # types = [] # factory.SubFactory("junk.tests.factories.JunkPointTypeFactory")
 
     @factory.post_generation
     def types(self, create, extracted, **kwargs):
@@ -46,6 +48,12 @@ class JunkPointRealisticFactory(factory.django.DjangoModelFactory):
             # A list of groups were passed in, use them
             for type_ in extracted:
                 self.types.add(type_)
+            print("types 1   : " + str(self.types))
+        else:
+            junk_point_type = JunkPointTypeFactory()
+            self.types.add(junk_point_type)
+            print("types 2   : " + str(self.types))
+
 
     class Params:
         median = Point(39.4783281, -0.3768237)
@@ -64,7 +72,6 @@ class DealFactory(factory.django.DjangoModelFactory):
     junk = FuzzyText()
     customer = factory.SubFactory("users.tests.factories.UserFactory")
     rider = factory.SubFactory("users.tests.factories.UserFactory")
-    junk_point = factory.SubFactory("junk.tests.factories.JunkPointFactory")
     price = FuzzyFloat(low=1, high=9999.99)
 
     class Meta:

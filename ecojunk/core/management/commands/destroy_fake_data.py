@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from ecojunk.junk.models import JunkPoint
+from ecojunk.junk.models import JunkPoint, JunkPointType
 
 
 class Command(BaseCommand):
@@ -7,3 +7,4 @@ class Command(BaseCommand):
 
     def handle(self, *args, **options):
         JunkPoint.objects.all().delete()
+        JunkPointType.objects.all().delete()

@@ -22,14 +22,6 @@ class Deal(models.Model):
         on_delete=models.SET_NULL,
     )
 
-    junk_point = models.ForeignKey(
-        "junk.JunkPoint",
-        verbose_name=_("Junk point"),
-        related_name="deals",
-        null=True,
-        on_delete=models.SET_NULL,
-    )
-
     price = models.DecimalField(max_digits=6, decimal_places=2)
 
     created_date = models.DateTimeField(_("Date"), auto_now_add=True)

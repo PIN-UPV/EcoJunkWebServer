@@ -37,7 +37,6 @@ class DealSerializer(serializers.ModelSerializer):
             "junk",
             "customer",
             "rider",
-            "junk_point",
             "price",
             "created_date",
             "accepted_date",
@@ -53,7 +52,6 @@ class DealSerializer(serializers.ModelSerializer):
         response = super().to_representation(instance)
         response["rider"] = UserSerializer(instance.customer).data
         response["customer"] = UserSerializer(instance.rider).data
-        response["junk_point"] = JunkPointSerializer(instance.junk_point).data
         return response
 
     def perform_create(self, serializer):

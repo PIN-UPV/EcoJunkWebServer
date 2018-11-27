@@ -102,8 +102,7 @@ class DealTest(APITestCase):
         self.assertEqual(len(deals), data["count"])
 
     def test_create_deal(self):
-        junk_point = JunkPointFactory()
-        data = {"junk_point": junk_point.pk, "price": 2.0, "junk": "Microwave"}
+        data = {"price": 2.0, "junk": "Microwave"}
 
         self.client.force_authenticate(self.user_customer)
         response = self.client.post("/api/v1/deals/", data=data, format="json")
@@ -112,8 +111,7 @@ class DealTest(APITestCase):
         self.assertIn("Microwave", response.json()["junk"])
 
     def test_delete_deal(self):
-        junk_point = JunkPointFactory()
-        data = {"junk_point": junk_point.pk, "price": 2.0, "junk": "Microwave"}
+        data = { "price": 2.0, "junk": "Microwave"}
 
         self.client.force_authenticate(self.user_customer)
         response = self.client.post("/api/v1/deals/", data=data, format="json")
