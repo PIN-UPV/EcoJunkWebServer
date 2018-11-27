@@ -12,18 +12,15 @@ class Command(BaseCommand):
         number_of_groups = 100
         types = []
         for tipe in TYPES:
-            junktype = JunkPointTypeFactory(name=tipe)
-            types.append(junktype)
-            junktype.save()
+            junk_point_type = JunkPointTypeFactory(name=tipe)
+            types.append(junk_point_type)
+            junk_point_type.save()
         for l in range(0, number_of_groups):
-            batch = []
-            for i in range(0, random.randrange(3, 5)):
-                extracted = types[random.randrange(0, len(TYPES))]
-                while extracted in batch:
-                    extracted = types[random.randrange(0, len(TYPES))]
-                batch.append(extracted)
-            print("junkpoint: " + str(batch))
-            junk_point = JunkPointRealisticFactory.build(types=batch)
+            extracted = []
+            for i in range(0, max(0, int(random.gauss(4, 1)))):
+                junk_point_type = types[random.randrange(0, len(TYPES))]
+                while junk_point_type in extracted:
+                    junk_point_type = types[random.randrange(0, len(TYPES))]
+                extracted.append(junk_point_type)
+            junk_point = JunkPointRealisticFactory.create(types=extracted)  # .build
             junk_point.save()
-            print("junkpoint: " + str(junk_point.types))
-

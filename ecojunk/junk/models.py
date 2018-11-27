@@ -76,6 +76,19 @@ class TrashType(models.Model):
         return self.name
 
 
+class JunkPointType(models.Model):
+    name = models.CharField(_("Name"), max_length=255)
+    description = models.TextField(_("Description"), max_length=512)
+
+    class Meta:
+        verbose_name = _("Junk point type")
+        verbose_name_plural = _("Junk point types")
+        ordering = ("id",)
+
+    def __str__(self):
+        return self.name
+
+
 class JunkPoint(models.Model):
     street_name = models.CharField(_("Name"), max_length=255)
     description = models.TextField(_("Description"), max_length=512)
@@ -83,7 +96,7 @@ class JunkPoint(models.Model):
     location = models.PointField(_("Location"))
 
     types = models.ManyToManyField(
-        "junk.JunkPointType", verbose_name=_("Junk point"), related_name="points"
+        "junk.JunkPointType", verbose_name=_("Junk point type")
     )
     contract = models.ForeignKey(
         "companies.Contract",
@@ -103,14 +116,4 @@ class JunkPoint(models.Model):
         return str(self.location)
 
 
-class JunkPointType(models.Model):
-    name = models.CharField(_("Name"), max_length=255)
-    description = models.TextField(_("Description"), max_length=512)
 
-    class Meta:
-        verbose_name = _("Junk point type")
-        verbose_name_plural = _("Junk point types")
-        ordering = ("id",)
-
-    def __str__(self):
-        return self.name

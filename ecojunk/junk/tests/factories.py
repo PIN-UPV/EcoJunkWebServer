@@ -14,11 +14,11 @@ class JunkPointTypeFactory(factory.django.DjangoModelFactory):
         model = "junk.JunkPointType"
 
 
+
 class JunkPointFactory(factory.django.DjangoModelFactory):
     street_name = FuzzyText()
     description = FuzzyText()
     location = FuzzyPoint()
-    types = factory.SubFactory("junk.tests.factories.JunkPointTypeFactory")
 
     @factory.post_generation
     def types(self, create, extracted, **kwargs):
@@ -37,7 +37,6 @@ class JunkPointFactory(factory.django.DjangoModelFactory):
 class JunkPointRealisticFactory(factory.django.DjangoModelFactory):
     street_name = FuzzyText()
     description = FuzzyText()
-    # types = [] # factory.SubFactory("junk.tests.factories.JunkPointTypeFactory")
 
     @factory.post_generation
     def types(self, create, extracted, **kwargs):
@@ -48,12 +47,6 @@ class JunkPointRealisticFactory(factory.django.DjangoModelFactory):
             # A list of groups were passed in, use them
             for type_ in extracted:
                 self.types.add(type_)
-            print("types 1   : " + str(self.types))
-        else:
-            junk_point_type = JunkPointTypeFactory()
-            self.types.add(junk_point_type)
-            print("types 2   : " + str(self.types))
-
 
     class Params:
         median = Point(39.4783281, -0.3768237)
