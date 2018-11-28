@@ -15,12 +15,13 @@ from ecojunk.junk.api.v1.serializers import (
     JunkPointTypeSerializer,
 )
 from ecojunk.junk.models import Deal, JunkPoint, JunkPointType
-from ecojunk.users.api.v1.permissions import RiderPermissions
+from ecojunk.users.api.v1.permissions import RiderPermissions, AuthenticatedReadPermission
 
 
 class JunkPointResource(ModelViewSet):
     queryset = JunkPoint.objects.all()
     serializer_class = JunkPointSerializer
+    permission_classes = []
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -40,13 +41,13 @@ class JunkPointResource(ModelViewSet):
 class JunkPointTypeResource(ReadOnlyModelViewSet):
     queryset = JunkPointType.objects.all()
     serializer_class = JunkPointTypeSerializer
-
+    permission_classes = []
 
 # TODO: handle auth, limit queryset, etc..
 class DealResource(ModelViewSet):
     queryset = Deal.objects.all()
     serializer_class = DealSerializer
-    permission_classes = [RiderPermissions, IsUserOwnerForDeletes, NoUpdates]
+    permission_classes = [RiderPermissions, IsUserOwnerForDeletes, NoUpdates, AuthenticatedReadPermission]
 
     def perform_create(self, serializer):
         return serializer.save(customer=self.request.user)
