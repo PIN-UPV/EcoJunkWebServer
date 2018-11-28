@@ -1,6 +1,9 @@
 from rest_framework import serializers
 
 from ecojunk.users.models import User, Permission
+from django.contrib.auth import authenticate
+from rest_framework_jwt.settings import api_settings
+from django.utils.translation import ugettext as _
 
 
 class PermissionSerializer(serializers.ModelSerializer):
@@ -53,5 +56,14 @@ class RegistrationSerializer(serializers.ModelSerializer):
         fields = ["email", "password", "token"]
 
     def create(self, validated_data):
-        return User.objects.create_user(**validated_data)
-
+        user = User.objects.create_user(**validated_data)
+        if not user.is_active:
+            msg = _('User account is disabled.')
+            raise serializers.ValidationError(msg)
+        jwt_payload_handler = api_settings.JWT_PAYLOAD_HANDLER
+        jwt_encode_handler = api_settings.JWT_ENCODE_HANDLER
+        payload = jwt_payload_handler(user)
+        return {
+            'token': jwt_encode_handler(payload),
+            'email': user.email
+        }
