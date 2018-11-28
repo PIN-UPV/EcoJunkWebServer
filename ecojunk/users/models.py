@@ -8,7 +8,7 @@ from django.contrib.gis.db import models
 from django.utils import timezone
 from django.utils.translation import ugettext_lazy as _
 
-from ecojunk.users.constants import RIDER, ROL_TYPES
+from ecojunk.users.constants import RIDER, ROL_TYPES, USER
 
 
 class UserManager(BaseUserManager):
@@ -24,6 +24,8 @@ class UserManager(BaseUserManager):
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
+        user_permission = Permission.objects.filter(rol=USER).first()
+        user.permissions.add(user_permission)
         return user
 
     def create_user(self, email=None, password=None, **extra_fields):
