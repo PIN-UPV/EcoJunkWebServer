@@ -37,6 +37,7 @@ class DealSerializer(serializers.ModelSerializer):
             "junk",
             "customer",
             "rider",
+            "state",
             "price",
             "created_date",
             "accepted_date",

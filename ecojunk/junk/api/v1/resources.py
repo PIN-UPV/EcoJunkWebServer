@@ -58,6 +58,7 @@ class DealResource(ModelViewSet):
             raise DealAlreadyPicked
         deal.rider = request.user
         deal.accepted_date = timezone.now()
+        deal.state = deal.ACCEPTED
         deal.save()
         return Response(status=status.HTTP_200_OK)
 
@@ -68,5 +69,6 @@ class DealResource(ModelViewSet):
             raise DealNotYours
         deal.rider = None
         deal.accepted_date = None
+        deal.state = deal.PUBLISHED
         deal.save()
         return Response(status=status.HTTP_200_OK)

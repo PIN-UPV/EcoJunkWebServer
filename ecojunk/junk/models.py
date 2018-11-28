@@ -3,6 +3,15 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class Deal(models.Model):
+    PUBLISHED = 'P'
+    ACCEPTED = 'A'
+    FINISHED = 'F'
+    DEAL_STATES = (
+        (PUBLISHED, 'PUBLISHED'),
+        (ACCEPTED, 'ACCEPTED'),
+        (FINISHED, 'FINISHED')
+    )
+
     junk = models.CharField(_("junk"), null=True, max_length=512)
 
     customer = models.ForeignKey(
@@ -21,6 +30,8 @@ class Deal(models.Model):
         null=True,
         on_delete=models.SET_NULL,
     )
+
+    state = models.CharField(max_length=1, choices=DEAL_STATES, default=PUBLISHED)
 
     price = models.DecimalField(max_digits=6, decimal_places=2)
 
