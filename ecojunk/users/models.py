@@ -24,8 +24,11 @@ class UserManager(BaseUserManager):
         user = self.model(email=email, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
+
         user_permission = Permission.objects.filter(rol=USER).first()
         user.permissions.add(user_permission)
+        user.save()
+
         return user
 
     def create_user(self, email=None, password=None, **extra_fields):
