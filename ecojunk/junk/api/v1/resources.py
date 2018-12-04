@@ -5,8 +5,8 @@ from rest_framework import status
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
-
-from ecojunk.core.api.permissions import NoDeletes, NoUpdates
+from rest_framework.permissions import AllowAny
+from ecojunk.core.api.permissions import NoUpdates
 from ecojunk.junk.api.v1.exceptions import DealAlreadyPicked, DealNotYours
 from ecojunk.junk.api.v1.permissions import IsUserOwnerForDeletes
 from ecojunk.junk.api.v1.serializers import (
@@ -15,13 +15,16 @@ from ecojunk.junk.api.v1.serializers import (
     JunkPointTypeSerializer,
 )
 from ecojunk.junk.models import Deal, JunkPoint, JunkPointType
-from ecojunk.users.api.v1.permissions import RiderPermissions, AuthenticatedReadPermission
+from ecojunk.users.api.v1.permissions import (
+    RiderPermissions,
+    AuthenticatedReadPermission,
+)
 
 
 class JunkPointResource(ModelViewSet):
     queryset = JunkPoint.objects.all()
     serializer_class = JunkPointSerializer
-    permission_classes = []
+    permission_classes = [AllowAny]
 
     def get_queryset(self):
         queryset = super().get_queryset()
@@ -41,13 +44,19 @@ class JunkPointResource(ModelViewSet):
 class JunkPointTypeResource(ReadOnlyModelViewSet):
     queryset = JunkPointType.objects.all()
     serializer_class = JunkPointTypeSerializer
-    permission_classes = []
+    permission_classes = [AllowAny]
+
 
 # TODO: handle auth, limit queryset, etc..
 class DealResource(ModelViewSet):
     queryset = Deal.objects.all()
     serializer_class = DealSerializer
-    permission_classes = [RiderPermissions, IsUserOwnerForDeletes, NoUpdates, AuthenticatedReadPermission]
+    permission_classes = [
+        RiderPermissions,
+        IsUserOwnerForDeletes,
+        NoUpdates,
+        AuthenticatedReadPermission,
+    ]
 
     def perform_create(self, serializer):
         return serializer.save(customer=self.request.user)

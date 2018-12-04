@@ -1,3 +1,11 @@
 
 
-TYPES = ["EcoParque", "Aceite", "Aparatos Electrónicos", "Baterias", "Papel", "Plástico", "Vidrio"]
+TYPES = [
+    "EcoParque",
+    "Aceite",
+    "Aparatos Electrónicos",
+    "Baterias",
+    "Papel",
+    "Plástico",
+    "Vidrio",
+]

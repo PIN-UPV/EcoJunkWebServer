@@ -5,14 +5,14 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('junk', '0015_remove_deal_junk_point'),
-    ]
+    dependencies = [("junk", "0015_remove_deal_junk_point")]
 
     operations = [
         migrations.AlterField(
-            model_name='junkpoint',
-            name='types',
-            field=models.ManyToManyField(to='junk.JunkPointType', verbose_name='Junk point'),
-        ),
+            model_name="junkpoint",
+            name="types",
+            field=models.ManyToManyField(
+                to="junk.JunkPointType", verbose_name="Junk point"
+            ),
+        )
     ]

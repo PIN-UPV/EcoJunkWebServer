@@ -14,7 +14,6 @@ class JunkPointTypeFactory(factory.django.DjangoModelFactory):
         model = "junk.JunkPointType"
 
 
-
 class JunkPointFactory(factory.django.DjangoModelFactory):
     street_name = FuzzyText()
     description = FuzzyText()

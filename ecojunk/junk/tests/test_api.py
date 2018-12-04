@@ -111,7 +111,7 @@ class DealTest(APITestCase):
         self.assertIn("Microwave", response.json()["junk"])
 
     def test_delete_deal(self):
-        data = { "price": 2.0, "junk": "Microwave"}
+        data = {"price": 2.0, "junk": "Microwave"}
 
         self.client.force_authenticate(self.user_customer)
         response = self.client.post("/api/v1/deals/", data=data, format="json")

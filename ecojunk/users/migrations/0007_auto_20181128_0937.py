@@ -5,14 +5,14 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('users', '0006_auto_20181113_1842'),
-    ]
+    dependencies = [("users", "0006_auto_20181113_1842")]
 
     operations = [
         migrations.AlterField(
-            model_name='user',
-            name='permissions',
-            field=models.ManyToManyField(default='user', to='users.Permission', verbose_name='Permissions'),
-        ),
+            model_name="user",
+            name="permissions",
+            field=models.ManyToManyField(
+                default="user", to="users.Permission", verbose_name="Permissions"
+            ),
+        )
     ]

@@ -1,9 +1,10 @@
 from _pytest import junitxml
 from django.core.management.base import BaseCommand
 
-from ecojunk.junk.tests.factories import JunkPointRealisticFactory,JunkPointTypeFactory
+from ecojunk.junk.tests.factories import JunkPointRealisticFactory, JunkPointTypeFactory
 from ecojunk.junk.constants import TYPES
 import random
+
 
 class Command(BaseCommand):
     help = "Populates database with fake data"

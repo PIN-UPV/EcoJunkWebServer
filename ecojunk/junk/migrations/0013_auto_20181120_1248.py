@@ -5,18 +5,13 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('junk', '0012_auto_20181119_1637'),
-    ]
+    dependencies = [("junk", "0012_auto_20181119_1637")]
 
     operations = [
-        migrations.RemoveField(
-            model_name='deal',
-            name='description',
-        ),
+        migrations.RemoveField(model_name="deal", name="description"),
         migrations.AddField(
-            model_name='deal',
-            name='junk',
-            field=models.CharField(max_length=512, null=True, verbose_name='junk'),
+            model_name="deal",
+            name="junk",
+            field=models.CharField(max_length=512, null=True, verbose_name="junk"),
         ),
     ]

@@ -3,13 +3,13 @@ from django.utils.translation import ugettext_lazy as _
 
 
 class Deal(models.Model):
-    PUBLISHED = 'P'
-    ACCEPTED = 'A'
-    FINISHED = 'F'
+    PUBLISHED = "P"
+    ACCEPTED = "A"
+    FINISHED = "F"
     DEAL_STATES = (
-        (PUBLISHED, 'PUBLISHED'),
-        (ACCEPTED, 'ACCEPTED'),
-        (FINISHED, 'FINISHED')
+        (PUBLISHED, "PUBLISHED"),
+        (ACCEPTED, "ACCEPTED"),
+        (FINISHED, "FINISHED"),
     )
 
     junk = models.CharField(_("junk"), null=True, max_length=512)
@@ -125,6 +125,3 @@ class JunkPoint(models.Model):
 
     def __str__(self):
         return str(self.location)
-
-
-

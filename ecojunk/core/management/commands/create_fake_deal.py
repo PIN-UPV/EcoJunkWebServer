@@ -8,7 +8,9 @@ class Command(BaseCommand):
     help = "Menage the deal deadlines"
 
     def handle(self, *args, **options):
-        deals = Deal.objects.filter(state=ACCEPTED, accepted_date__gt=datetime.datetime.now()+datetime.timedelta(1, 0, 0, 0, 0, 0, 0))
+        deals = Deal.objects.filter(
+            state=ACCEPTED,
+            accepted_date__gt=datetime.datetime.now()
+            + datetime.timedelta(1, 0, 0, 0, 0, 0, 0),
+        )
         print(str(deals))
-
-

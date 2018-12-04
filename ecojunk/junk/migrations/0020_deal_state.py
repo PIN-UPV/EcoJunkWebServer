@@ -5,14 +5,16 @@ from django.db import migrations, models
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('junk', '0019_auto_20181127_2230'),
-    ]
+    dependencies = [("junk", "0019_auto_20181127_2230")]
 
     operations = [
         migrations.AddField(
-            model_name='deal',
-            name='state',
-            field=models.CharField(choices=[('P', 'PUBLISHED'), ('A', 'ACCEPTED'), ('F', 'FINISHED')], default='P', max_length=1),
-        ),
+            model_name="deal",
+            name="state",
+            field=models.CharField(
+                choices=[("P", "PUBLISHED"), ("A", "ACCEPTED"), ("F", "FINISHED")],
+                default="P",
+                max_length=1,
+            ),
+        )
     ]
