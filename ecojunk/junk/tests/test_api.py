@@ -102,7 +102,11 @@ class DealTest(APITestCase):
         self.assertEqual(len(deals), data["count"])
 
     def test_create_deal(self):
-        data = {"price": 2.0, "junk": "Microwave"}
+        data = {
+            "price": 2.0,
+            "junk": "Microwave",
+            "pick_up_point": "POINT (2.2945 48.8583)",
+        }
 
         self.client.force_authenticate(self.user_customer)
         response = self.client.post("/api/v1/deals/", data=data, format="json")

@@ -41,6 +41,7 @@ class DealSerializer(serializers.ModelSerializer):
             "price",
             "created_date",
             "accepted_date",
+            "pick_up_point",
         )
         extra_kwargs = {
             "customer": {"read_only": True},

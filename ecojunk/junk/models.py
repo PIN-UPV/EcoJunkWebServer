@@ -38,6 +38,8 @@ class Deal(models.Model):
     created_date = models.DateTimeField(_("Date"), auto_now_add=True)
     accepted_date = models.DateTimeField(_("Date"), null=True)
 
+    pick_up_point = models.PointField(_("Pick up point"), null=True)
+
     class Meta:
         verbose_name = _("Deal")
         verbose_name_plural = _("Deals")
