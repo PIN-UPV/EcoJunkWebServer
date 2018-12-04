@@ -12,7 +12,7 @@ from ecojunk.junk.api.v1.serializers import JunkPointSerializer
 from ecojunk.users.constants import RIDER, USER
 from ecojunk.users.tests.factories import PermissionFactory, UserFactory
 from django.contrib.gis.geos import Point
-
+from ecojunk.junk.constants import FINISHED
 
 class JunkPointTypeResourceTest(APITestCase):
     junk_point_type_factory = JunkPointTypeFactory
@@ -148,3 +148,15 @@ class DealTest(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertIsNone(Deal.objects.get(pk=deal.pk).accepted_date)
+
+    def test_finalize_deal(self):
+        deal = DealFactory()
+
+        deal.rider = self.user_rider
+        deal.save()
+
+        self.client.force_authenticate(self.user_rider)
+        response = self.client.post(f"/api/v1/deals/{deal.pk}/finalize_deal/")
+
+        self.assertEqual(response.status_code, status.HTTP_200_OK)
+        self.assertEqual(Deal.objects.get(pk=deal.pk).state, FINISHED)

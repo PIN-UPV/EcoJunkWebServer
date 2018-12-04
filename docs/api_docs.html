@@ -1,112 +1,112 @@
 <html><head>
-    <title>API</title>
-<link rel="stylesheet" type="text/css" href="custom.css"></head>
+  <title>API</title>
+  <link rel="stylesheet" type="text/css" href="custom.css"></head>
 
 <body>
-    <div>
-        <h2>Allowed HTTPs requests:</h2>
-        <pre>PUT     : To create resource
+<div>
+  <h2>Allowed HTTPs requests:</h2>
+  <pre>PUT     : To create resource
 POST    : Update resource
 GET     : Get a resource or list of resources
 DELETE  : To delete resource
 </pre>
+</div>
+<div>
+  <h2>Description Of Usual Server Responses:</h2>
+  <ul>
+    <li>
+      <p>200 <code>OK</code> - the request was successful (some API calls may return 201 instead).</p>
+    </li>
+    <li>
+      <p>201 <code>Created</code> - the request was successful and a resource was created.</p>
+    </li>
+    <li>
+      <p>204 <code>No Content</code> - the request was successful but there is no representation to return
+        (i.e. the response is empty).</p>
+    </li>
+    <li>
+      <p>400 <code>Bad Request</code> - the request could not be understood or was missing required
+        parameters.</p>
+    </li>
+    <li>
+      <p>401 <code>Unauthorized</code> - authentication failed or user doesn't have permissions for requested
+        operation.</p>
+    </li>
+    <li>
+      <p>403 <code>Forbidden</code> - access denied.</p>
+    </li>
+    <li>
+      <p>404 <code>Not Found</code> - resource was not found.</p>
+    </li>
+    <li>
+      <p>405 <code>Method Not Allowed</code> - requested method is not supported for resource.</p>
+    </li>
+  </ul>
+</div>
+<div>
+  <div>
+    <h2>Authentication:</h2>
+    <p>All calls need to be authenticated. For obtainging a JWT key use the following enpoint:</p>
+    <div class="apibox">
+      <div class="endpointname">api/v1/users/login/</div>
+      <div class="description"><b>POST:</b>
+        <div><b>Parameters:</b>
+          <ul>
+            <li><i> email:</i> Email of the user you want to log int. Example: example@foo.com</li>
+            <li><i> password:</i> Password of the user you want to log int. Example: password</li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <div>
-        <h2>Description Of Usual Server Responses:</h2>
-        <ul>
-            <li>
-                <p>200 <code>OK</code> - the request was successful (some API calls may return 201 instead).</p>
-            </li>
-            <li>
-                <p>201 <code>Created</code> - the request was successful and a resource was created.</p>
-            </li>
-            <li>
-                <p>204 <code>No Content</code> - the request was successful but there is no representation to return
-                    (i.e. the response is empty).</p>
-            </li>
-            <li>
-                <p>400 <code>Bad Request</code> - the request could not be understood or was missing required
-                    parameters.</p>
-            </li>
-            <li>
-                <p>401 <code>Unauthorized</code> - authentication failed or user doesn't have permissions for requested
-                    operation.</p>
-            </li>
-            <li>
-                <p>403 <code>Forbidden</code> - access denied.</p>
-            </li>
-            <li>
-                <p>404 <code>Not Found</code> - resource was not found.</p>
-            </li>
-            <li>
-                <p>405 <code>Method Not Allowed</code> - requested method is not supported for resource.</p>
-            </li>
-        </ul>
-    </div>
-    <div>
-        <div>
-            <h2>Authentication:</h2>
-            <p>All calls need to be authenticated. For obtainging a JWT key use the following enpoint:</p>
-            <div class="apibox">
-                <div class="endpointname">api/v1/users/login/</div>
-                <div class="description"><b>POST:</b>
-                    <div><b>Parameters:</b>
-                        <ul>
-                            <li><i> email:</i> Email of the user you want to log int. Example: example@foo.com</li>
-                            <li><i> password:</i> Password of the user you want to log int. Example: password</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <p>To verify the token:</p>
-            <div class="apibox">
-                <div class="endpointname">api/v1/users/verify-token/</div>
-                <div class="description"><b>GET:</b>
-                    <div><b>Response:</b>
-                        <pre>{
+    <p>To verify the token:</p>
+    <div class="apibox">
+      <div class="endpointname">api/v1/users/verify-token/</div>
+      <div class="description"><b>GET:</b>
+        <div><b>Response:</b>
+          <pre>{
     "token": "abcdef..."
 }</pre>
-                    </div>
-                </div>
-            </div>
-            <p>To refresh the token:</p>
-            <div class="apibox">
-                <div class="endpointname">api/v1/users/refresh-token/</div>
-                <div class="description"><b>POST:</b>
-                    <div><b>Parameters:</b>
-                        <ul>
-                            <li><i> token:</i> Existing token. Example: abcde...</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <p>To register:</p>
-            <div class="apibox">
-                <div class="endpointname">api/v1/users/register/</div>
-                <div class="description"><b>POST:</b>
-                    <div><b>Parameters:</b>
-                        <ul>
-                            <li><i> email:</i> Email of the user you want to register. Example: example@foo.com</li>
-                            <li><i> password:</i> Password of the user you want to register. Example: password</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
         </div>
-        <br>
-        <div>
-            <p>To authenticate with the token set the headers like this:</p>
-            <div>
-                "Authorization: JWT your_token"
-            </div>
-        </div>
+      </div>
     </div>
+    <p>To refresh the token:</p>
+    <div class="apibox">
+      <div class="endpointname">api/v1/users/refresh-token/</div>
+      <div class="description"><b>POST:</b>
+        <div><b>Parameters:</b>
+          <ul>
+            <li><i> token:</i> Existing token. Example: abcde...</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <p>To register:</p>
+    <div class="apibox">
+      <div class="endpointname">api/v1/users/register/</div>
+      <div class="description"><b>POST:</b>
+        <div><b>Parameters:</b>
+          <ul>
+            <li><i> email:</i> Email of the user you want to register. Example: example@foo.com</li>
+            <li><i> password:</i> Password of the user you want to register. Example: password</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br>
+  <div>
+    <p>To authenticate with the token set the headers like this:</p>
     <div>
-        <h2>References:</h2>
-        <div class="apibox">
-            <div class="endpointname">api/v1/deals/</div>
-            <div class="description"><b>GET:</b> Returns the list of deals<div><b>Response:</b>
-                    <pre>{
+      "Authorization: JWT your_token"
+    </div>
+  </div>
+</div>
+<div>
+  <h2>References:</h2>
+  <div class="apibox">
+    <div class="endpointname">api/v1/deals/</div>
+    <div class="description"><b>GET:</b> Returns the list of deals<div><b>Response:</b>
+      <pre>{
   "count": 2,
   "next": null,
   "previous": null,
@@ -128,58 +128,95 @@ DELETE  : To delete resource
   ]
 }
                   </pre>
-                </div>
-              <b>POST:</b> If you are a customer, create a deal <div><b>Parameters:</b>
-                  <div>
-                        <ul>
-                            <li><i> price:</i> The integer positive price of the deal</li>
-                            <li><i> customer:</i> The customer id reference to the owner of the deal</li>
-                            <li><i> rider:</i> The customer id reference to the rider of the deal (OPTIONAL)</li>
-                            <li><i> junk_point:</i> The junk point id reference of the junk point (OPTIONAL)</li>
-                        </ul>
-                    </div>
-                <b>Response:</b>
-                    <pre>{
+    </div>
+      <b>POST:</b> If you are a customer, create a deal <div><b>Parameters:</b>
+        <div>
+          <ul>
+            <li><i> price:</i> The integer positive price of the deal</li>
+            <li><i> customer:</i> The customer id reference to the owner of the deal</li>
+            <li><i> rider:</i> The customer id reference to the rider of the deal (OPTIONAL)</li>
+            <li><i> junk_point:</i> The junk point id reference of the junk point (OPTIONAL)</li>
+          </ul>
+        </div>
+        <b>Response:</b>
+        <pre>{
     "id": 5,
     "customer": 7,
     "rider": 2,
     "junk_point": 6087,
     "price": "6.00"
 }</pre>
-                </div>
-            </div></div> <div class="apibox">
-            <div class="endpointname">api/v1/deals/accept_deal</div>
-            <div class="description"><b>POST:</b> If you are a customer, accept the deal as rider (authentication required)
-                <div><b>Parameters:</b>
-                    <ul>
-                        <li><i> id:</i> Numeric id of the Deal to perform action with. Example: 1</li>
-                    </ul>
-                </div>
-            </div>
-           </div>
-             <div class="apibox"><div class="endpointname">api/v1/deals/decline_deal</div>
-<div class="description"><b>POST:</b> If you are the rider for a given deal, delete that deal (authentication required)
-                <div><b>Parameters:</b>
-                    <ul>
-                        <li><i> id:</i> The numeric id of the Deal to decline. Example: 1</li>
-                    </ul>
-                </div>
-            </div></div>
-
-
-
-    <div class="apibox">
-        <div class="endpointname">api/v1/junk_points/</div>
-        <div class="description"><b>GET:</b>Return the list of all junk points<div>
-           <div><b>Parameters:</b>
-                    <ul>
-                        <li><i> lat:</i> The latitude coordinate of the center of the map (OPTIONAL). If not given, the endpoint will return a list of all junkpoints. Example: 1.1802852</li>
-                        <li><i> lng:</i> The longitude coordinate of the center of the map (OPTIONAL). If not given, the endpoint will return a list of all junkpoints. Example: 2.1474997</li>
-                        <li><i> km:</i> The number of kilometers from the center of the map (OPTIONAL). Only specify this parameters if the coordinates are defined. This is an optional parameter, by default is set to 10Km. Example: 20</li>
-                    </ul>
-                </div>
+        </div>
+</div>
+</div></div>
+  <div class="apibox">
+    <div class="endpointname">api/v1/deals/{dealid}</div>
+    <div class="description">
+      <b>Path variable:</b>
+          <div>
+            <ul>
+              <li><i> dealid:</i> The id of the Deal to delete</li>
+            </ul>
+          </div>
+      <b>GET:</b> Returns the specific deal<div><b>Response:</b>
+      <pre>{
+    "id": 1,
+    "customer": 7,
+    "rider": 2,
+    "junk_point": 4098,
+    "price": "49.99"
+}</pre>
+    </div>
+        <b>DELETE:</b> If you are a customer owning the deal, delete the specified deal
+        <div>
           <b>Response:</b>
-                <pre>{
+          <pre>
+
+          </pre>
+        </div></div>
+</div>
+</div>
+<div class="apibox">
+  <div class="endpointname">api/v1/deals/{dealid}/accept_deal</div>
+  <div class="description"><b>POST:</b> If you are a customer, accept the deal as rider (authentication required)
+     <div><b>Path variable:</b>
+        <ul>
+          <li><i> dealid:</i> The id of the Deal to accept</li>
+        </ul>
+      </div>
+  </div>
+</div>
+<div class="apibox"><div class="endpointname">api/v1/deals/{dealid}/decline_deal</div>
+  <div class="description"><b>POST:</b> If you are the rider for a given deal, delete that deal (authentication required)
+    <div><b>Path variable:</b>
+      <ul>
+        <li><i> dealid:</i> The id of the Deal to decline</li>
+      </ul>
+    </div>
+  </div></div>
+<div class="apibox"><div class="endpointname">api/v1/deals/{dealid}/finalize_deal</div>
+  <div class="description"><b>POST:</b> If you are the customer for a given deal, and a rider is assigned finish that deal (authentication required)
+      <div><b>Path variable:</b>
+        <ul>
+          <li><i> dealid:</i> The id of the Deal to finish</li>
+        </ul>
+      </div>
+  </div></div>
+
+
+
+<div class="apibox">
+  <div class="endpointname">api/v1/junk_points/</div>
+  <div class="description"><b>GET:</b>Return the list of all junk points<div>
+    <div><b>Parameters:</b>
+      <ul>
+        <li><i> lat:</i> The latitude coordinate of the center of the map (OPTIONAL). If not given, the endpoint will return a list of all junkpoints. Example: 1.1802852</li>
+        <li><i> lng:</i> The longitude coordinate of the center of the map (OPTIONAL). If not given, the endpoint will return a list of all junkpoints. Example: 2.1474997</li>
+        <li><i> km:</i> The number of kilometers from the center of the map (OPTIONAL). Only specify this parameters if the coordinates are defined. This is an optional parameter, by default is set to 10Km. Example: 20</li>
+      </ul>
+    </div>
+    <b>Response:</b>
+    <pre>{
     "count": 100,
     "next": "http://localhost:8000/api/v1/junk_points/?page=2",
     "previous": null,
@@ -199,12 +236,12 @@ DELETE  : To delete resource
         }
     ]
 }</pre>
-            </div>
-        </div>
-    </div><div class="apibox">
-        <div class="endpointname">api/v1/junk_point_types/</div>
-        <div class="description"><b>GET:</b>Return the list of all junk point types<div><b>Response:</b>
-                <pre>{
+  </div>
+  </div>
+</div><div class="apibox">
+  <div class="endpointname">api/v1/junk_point_types/</div>
+  <div class="description"><b>GET:</b>Return the list of all junk point types<div><b>Response:</b>
+    <pre>{
     "count": 1,
     "next": "http://localhost:8000/api/v1/junk_point_types/?page=2",
     "previous": null,
@@ -216,12 +253,12 @@ DELETE  : To delete resource
         },
       ]
 }</pre>
-            </div>
-        </div>
-    </div><div class="apibox">
-        <div class="endpointname">api/v1/missions/</div>
-        <div class="description"><b>GET:</b>Return the list of all missions<div><b>Response:</b>
-                <pre>{
+  </div>
+  </div>
+</div><div class="apibox">
+  <div class="endpointname">api/v1/missions/</div>
+  <div class="description"><b>GET:</b>Return the list of all missions<div><b>Response:</b>
+    <pre>{
     "count": 1,
     "next": null,
     "previous": null,
@@ -236,12 +273,12 @@ DELETE  : To delete resource
         }
     ]
 }</pre>
-            </div>
-        </div>
-    </div><div class="apibox">
-        <div class="endpointname">api/v1/badges/</div>
-        <div class="description"><b>GET:</b>Return the list of all badges<div><b>Response:</b>
-                <pre>{
+  </div>
+  </div>
+</div><div class="apibox">
+  <div class="endpointname">api/v1/badges/</div>
+  <div class="description"><b>GET:</b>Return the list of all badges<div><b>Response:</b>
+    <pre>{
     "count": 1,
     "next": null,
     "previous": null,
@@ -252,13 +289,13 @@ DELETE  : To delete resource
         }
     ]
 }</pre>
-            </div>
-        </div>
+  </div>
+  </div>
 
-    </div><div class="apibox">
-        <div class="endpointname">api/v1/contracts/</div>
-        <div class="description"><b>GET:</b>Return the list of all contracts<div><b>Response:</b>
-                <pre>{
+</div><div class="apibox">
+  <div class="endpointname">api/v1/contracts/</div>
+  <div class="description"><b>GET:</b>Return the list of all contracts<div><b>Response:</b>
+    <pre>{
     "count": 1,
     "next": null,
     "previous": null,
@@ -269,12 +306,12 @@ DELETE  : To delete resource
         }
     ]
 }</pre>
-            </div>
-        </div>
-    </div><div class="apibox">
-        <div class="endpointname">api/v1/companies/</div>
-        <div class="description"><b>GET:</b>Return the list of all companies<div><b>Response:</b>
-                <pre>{
+  </div>
+  </div>
+</div><div class="apibox">
+  <div class="endpointname">api/v1/companies/</div>
+  <div class="description"><b>GET:</b>Return the list of all companies<div><b>Response:</b>
+    <pre>{
     "count": 1,
     "next": null,
     "previous": null,
@@ -285,9 +322,9 @@ DELETE  : To delete resource
         }
     ]
 }</pre>
-            </div>
-        </div>
-    </div></div>
+  </div>
+  </div>
+</div></div>
 
 
 

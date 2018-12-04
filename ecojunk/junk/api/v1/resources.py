@@ -2,7 +2,7 @@ from django.contrib.gis.geos import Point
 from django.contrib.gis.measure import Distance
 from django.utils import timezone
 from rest_framework import status
-from ecojunk.junk.constants import PUBLISHED, ACCEPTED
+from ecojunk.junk.constants import PUBLISHED, ACCEPTED, FINISHED
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
@@ -83,3 +83,13 @@ class DealResource(ModelViewSet):
         deal.state = PUBLISHED
         deal.save()
         return Response(status=status.HTTP_200_OK)
+
+    @action(detail=True, methods=["post"])
+    def finalize_deal(self, request, **kwargs):
+        deal = self.get_object()
+        if not deal.rider or deal.rider != self.request.user:
+            raise DealNotYours
+        deal.state = FINISHED
+        deal.save()
+        return Response(status=status.HTTP_200_OK)
+
