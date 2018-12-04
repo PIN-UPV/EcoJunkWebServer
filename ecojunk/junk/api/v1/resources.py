@@ -2,6 +2,7 @@ from django.contrib.gis.geos import Point
 from django.contrib.gis.measure import Distance
 from django.utils import timezone
 from rest_framework import status
+from ecojunk.junk.constants import PUBLISHED, ACCEPTED
 from rest_framework.decorators import action
 from rest_framework.response import Response
 from rest_framework.viewsets import ModelViewSet, ReadOnlyModelViewSet
@@ -68,7 +69,7 @@ class DealResource(ModelViewSet):
             raise DealAlreadyPicked
         deal.rider = request.user
         deal.accepted_date = timezone.now()
-        deal.state = deal.ACCEPTED
+        deal.state = ACCEPTED
         deal.save()
         return Response(status=status.HTTP_200_OK)
 
@@ -79,6 +80,6 @@ class DealResource(ModelViewSet):
             raise DealNotYours
         deal.rider = None
         deal.accepted_date = None
-        deal.state = deal.PUBLISHED
+        deal.state = PUBLISHED
         deal.save()
         return Response(status=status.HTTP_200_OK)
