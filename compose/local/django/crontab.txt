@@ -1,0 +1,1 @@
+@hourly manage.py deal_job

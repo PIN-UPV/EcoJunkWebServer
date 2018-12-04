@@ -46,6 +46,12 @@ COPY ./compose/production/django/entrypoint /entrypoint
 RUN sed -i 's/\r//' /entrypoint
 RUN chmod +x /entrypoint
 
+ADD ./compose/local/django/crontab.txt /crontab.txt
+RUN /usr/bin/crontab crontab.txt
+COPY ./compose/local/django/entry.sh /entry.sh
+RUN chmod 755 /entry.sh
+CMD ["/entry.sh"]
+
 COPY ./compose/local/django/start /start
 RUN sed -i 's/\r//' /start
 RUN chmod +x /start
